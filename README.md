@@ -1,8 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BlockchainUNN Next.js Website
 
-## Getting Started
+A modern, fully rewritten version of the BlockchainUNN website built with Next.js 14, TypeScript, and TailwindCSS.
 
-First, run the development server:
+## 🚀 Features
+
+- **Next.js 14** with App Router
+- **TypeScript** with strict type checking
+- **TailwindCSS** with shadcn/ui components
+- **Zustand** for client-side state management
+- **TanStack React Query** for server state management
+- **Server Actions** for API calls
+- **Responsive Design** with mobile-first approach
+- **Dark/Light Theme** toggle
+- **Error Boundary** with toast notifications
+- **Content Management** system with extracted content files
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS + shadcn/ui
+- **State Management**: Zustand (client) + React Query (server)
+- **HTTP Client**: Native Fetch API with Server Actions
+- **Icons**: React Icons
+- **Fonts**: Google Fonts (Raleway, JetBrains Mono) + Wallpoet
+- **Notifications**: React Toastify
+- **Animations**: Tailwind CSS animations
+
+## 📁 Project Structure
+
+```
+blockchain-unn-nextjs/
+├── app/                    # Next.js App Router
+│   ├── (dashboard)/       # Route groups
+│   ├── actions/           # Server Actions
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx          # Home page
+│   └── providers.tsx      # Context providers
+├── components/            # React components
+│   ├── ui/               # shadcn/ui components
+│   ├── layout/           # Layout components
+│   ├── home/             # Home page components
+│   └── common/           # Shared components
+├── content/              # Content management
+├── hooks/                # Custom hooks
+│   ├── crud/             # CRUD hooks
+│   ├── custom/           # Custom utility hooks
+│   └── store/            # Zustand stores
+├── lib/                  # Utility libraries
+├── types/                # TypeScript type definitions
+└── public/               # Static assets
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn or pnpm
+
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd blockchain-unn-nextjs
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. **Set up environment variables**
+
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` with your configuration values.
+
+4. **Install shadcn/ui components** (as needed)
+
+```bash
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add input
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add toast
+# Add other components as needed
+```
+
+5. **Run the development server**
 
 ```bash
 npm run dev
@@ -10,27 +105,166 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Adding New Content
 
-## Learn More
+Content is managed through TypeScript files in the `content/` directory:
 
-To learn more about Next.js, take a look at the following resources:
+```typescript
+// content/home.ts
+export const homeContent = {
+  hero: {
+    title: "Your Title",
+    subtitle: "Your Subtitle",
+    // ...
+  },
+};
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Adding New API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Create Server Action** in `app/actions/`:
 
-## Deploy on Vercel
+```typescript
+"use server";
+export async function myApiCall(data: MyType) {
+  // API logic here
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Create React Query Hook** in `hooks/crud/`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+export const useMyApiCall = () => {
+  return useMutation({
+    mutationFn: myApiCall,
+    // ...
+  });
+};
+```
+
+3. **Add Query Key** to `lib/queryKeys.ts`:
+
+```typescript
+export const QUERY_KEYS = {
+  myApiCall: makeQueryKey("my_api_call"),
+};
+```
+
+### Styling Components
+
+Use the custom `Text` component for consistent typography:
+
+```tsx
+import { Text } from "@/components/common/Text";
+
+<Text variant="h1" size="2xl" weight="bold" color="primary">
+  My Heading
+</Text>;
+```
+
+### Theme Management
+
+Use the `useTheme` hook for theme-aware components:
+
+```tsx
+import { useTheme } from "@/hooks/store/useTheme";
+
+const { isDarkMode, toggleTheme } = useTheme();
+```
+
+## 🔄 Migration from Original
+
+### Key Changes Made:
+
+1. **Framework Migration**: React + React Router → Next.js App Router
+2. **Language**: JavaScript → TypeScript with strict types
+3. **State Management**: Redux → Zustand + React Query
+4. **API Layer**: Axios → Server Actions + Fetch API
+5. **Content**: Hardcoded → Extracted to content files
+6. **Components**: Class components → Functional with hooks
+7. **Styling**: Maintained TailwindCSS, added shadcn/ui
+
+### Benefits:
+
+- **Better SEO** with Next.js SSR/SSG
+- **Improved Performance** with automatic optimizations
+- **Type Safety** with TypeScript
+- **Better Developer Experience** with modern tooling
+- **Easier Maintenance** with separated concerns
+- **Scalable Architecture** with modular structure
+
+## 🧪 Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript type checking
+
+### Code Style
+
+The project follows:
+
+- **ESLint** for code linting
+- **TypeScript strict mode** for type safety
+- **Prettier** for code formatting (recommended)
+- **Next.js conventions** for file structure
+
+## 📝 TODO
+
+### Components to Complete:
+
+- [ ] PhotoCurl component
+- [ ] Skills component
+- [ ] Feedback component
+- [ ] UpcomingEvents component
+- [ ] PastEvents component
+- [ ] Partners component
+- [ ] Newsletter component
+- [ ] Footer component
+- [ ] About page components
+- [ ] Community page components
+- [ ] Event registration forms
+- [ ] Hackathon dashboard
+
+### Features to Add:
+
+- [ ] Form validation with Zod
+- [ ] Image optimization
+- [ ] Loading states
+- [ ] Error pages (404, 500)
+- [ ] SEO optimization
+- [ ] Analytics integration
+- [ ] Performance monitoring
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+For support and questions:
+
+- Create an issue on GitHub
+- Contact the development team
+- Check the documentation
+
+---
+
+Built with ❤️ by the BlockchainUNN development team.
