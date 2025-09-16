@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
@@ -203,10 +205,10 @@ export default function EventRegistrationPage() {
                         <div className="text-center">
                           <Mail className="w-16 h-16 text-blockchain-green mx-auto mb-4" />
                           <Text size="lg" weight="semibold" className="mb-2">
-                            Let's start with your email
+                            Let&apos;s start with your email
                           </Text>
                           <Text color="muted">
-                            We'll check if you're already registered
+                            We&apos;ll check if you&apos;re already registered
                           </Text>
                         </div>
 

@@ -113,7 +113,7 @@ export function searchTeamMembers(
   searchQuery: string,
   tag?: string
 ): TeamMember[] {
-  let filteredData = tag ? getTeamByTag(teamData, tag) : teamData;
+  const filteredData = tag ? getTeamByTag(teamData, tag) : teamData;
 
   if (!searchQuery || searchQuery.trim() === "") {
     return filteredData;

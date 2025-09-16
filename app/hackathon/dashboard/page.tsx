@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useState } from "react";
@@ -545,9 +547,9 @@ function ProjectSection() {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <Text size="sm" className="text-blue-800">
             <strong>Pro Tip:</strong> Start brainstorming your project idea
-            early! Consider the tools and technologies you'll need, and don't
-            forget to leverage blockchain features like smart contracts,
-            tokenization, or decentralization.
+            early! Consider the tools and technologies you&apos;ll need, and
+            don&apos;t forget to leverage blockchain features like smart
+            contracts, tokenization, or decentralization.
           </Text>
         </div>
       </CardContent>

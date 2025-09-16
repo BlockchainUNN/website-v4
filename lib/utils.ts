@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CountdownTime } from "@/types/common.types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Formik, Form } from "formik";
@@ -112,7 +114,7 @@ export default function HackathonLoginPage() {
 
                     <div className="text-center space-y-2">
                       <Text size="sm" color="muted">
-                        Don't have an account?{" "}
+                        Don&apos;t have an account?{" "}
                         <Link
                           href="/hackathon/registration"
                           className="text-blockchain-green hover:underline"

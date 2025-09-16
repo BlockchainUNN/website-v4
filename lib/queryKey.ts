@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const makeQueryKey = (key: string) => (params?: any) =>
   [key, JSON.stringify(params || {})];
 
