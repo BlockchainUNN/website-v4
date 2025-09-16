@@ -1,63 +1,59 @@
-"use client";
+import xLogo from "../../public/assets/socials/x-black.svg";
+import linkedInLogo from "../../public/assets/socials/linkedIn-black.svg";
+import instagramLogo from "../../public/assets/socials/instagram-black.svg";
+import telegramLogo from "../../public/assets/socials/telegram-black.svg";
+import xLogoLight from "../../public/assets/socials/x.svg";
+import linkedInLogoLight from "../../public/assets/socials/linkedIn.svg";
+import instagramLogoLight from "../../public/assets/socials/instagram.svg";
+import telegramLogoLight from "../../public/assets/socials/telegram.svg";
+import Image from "next/image";
+import { useTheme } from "@/hooks/store/useTheme";
+import Link from "next/link";
 
-import {
-  FaTwitter,
-  FaDiscord,
-  FaTelegram,
-  FaLinkedin,
-  FaInstagram,
-  FaGithub,
-  FaWhatsapp,
-} from "react-icons/fa";
-import { cn } from "@/lib/utils";
-import { IconType } from "react-icons";
-
-const iconMap: Record<string, IconType> = {
-  FaTwitter,
-  FaDiscord,
-  FaTelegram,
-  FaLinkedin,
-  FaInstagram,
-  FaGithub,
-  FaWhatsapp,
-};
-
-interface SocialLinkProps {
-  href: string;
-  icon: string;
-  platform: string;
-  size?: number;
-  className?: string;
-}
-
-export function SocialLink({
-  href,
-  icon,
-  platform,
-  size = 20,
-  className,
-}: SocialLinkProps) {
-  const IconComponent = iconMap[icon];
-
-  if (!IconComponent) {
-    console.warn(`Icon ${icon} not found in iconMap`);
-    return null;
-  }
+const SocialLink = ({ to, type }: { to: string; type: string }) => {
+  const { isDarkMode } = useTheme();
+  const theme = isDarkMode;
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={cn(
-        "p-2 rounded-full transition-all duration-200",
-        "bg-blockchain-green/10 hover:bg-blockchain-green hover:text-white",
-        "text-blockchain-green",
-        className
-      )}
-      aria-label={`Visit our ${platform}`}
+    <Link
+      className={`flex justify-center border border-blockchain-green bg-blockchain-green/15 w-6 h-6 ${
+        theme ? "" : ""
+      }`}
+      href={to}
     >
-      <IconComponent size={size} />
-    </a>
+      {theme ? (
+        <Image
+          width={500}
+          className="my-auto w-3 h-3"
+          src={
+            type === "x"
+              ? xLogoLight
+              : type === "linkedin"
+              ? linkedInLogoLight
+              : type === "telegram"
+              ? telegramLogoLight
+              : instagramLogoLight
+          }
+          alt={type + " logo"}
+        />
+      ) : (
+        <Image
+          width={500}
+          className="my-auto w-3 h-3"
+          src={
+            type === "x"
+              ? xLogo
+              : type === "linkedin"
+              ? linkedInLogo
+              : type === "telegram"
+              ? telegramLogo
+              : instagramLogo
+          }
+          alt={type + " logo"}
+        />
+      )}
+    </Link>
   );
-}
+};
+
+export default SocialLink;

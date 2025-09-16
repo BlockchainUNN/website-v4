@@ -1,53 +1,69 @@
 "use client";
+import React, { useState } from "react";
+import LogoBlack from "../../public/assets/blockchainunn-green.png";
+import LogoWhite from "../../public/assets/blockchainunn-white.png";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image.js";
 import { useTheme } from "@/hooks/store/useTheme";
-import { commonContent } from "@/content/common";
-import { cn } from "@/lib/utils";
-import { SocialLink } from "./SocialLink";
 import { ThemeSwitch } from "./ThemeSwitch";
+import Link from "next/link";
+import SocialLink from "./SocialLink";
+import { usePathname } from "next/navigation";
 
-export function Navbar() {
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navItems = ["Home", "About", "Community", "Team", "Events"]; //"Blog"
   const { isDarkMode } = useTheme();
+  const theme = isDarkMode;
   const pathname = usePathname();
 
+  // Get the current page from the URL to highlight the corresponding nav item
   const currentPage = pathname.split("/")[1] || "home";
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Helper function to get the correct link for each nav item
+  const getNavItemLink = (item: string) => {
+    if (item.toLowerCase() === "team") {
+      return "/about#team";
+    } else if (item.toLowerCase() === "events") {
+      return "/event";
+    }
+    return `/${item.toLowerCase()}`;
+  };
+
   return (
     <div
-      className={cn(
-        "w-[95%] rounded-md px-4 md:px-10 py-4 flex justify-between items-center shadow-2xl relative",
-        isDarkMode ? "bg-dark-mode shadow text-ash" : "bg-white"
-      )}
+      className={`${
+        theme ? "bg-dark-mode shadow text-[#B2B2B2]" : "bg-white"
+      } w-[95%] rounded-md px-4 md:px-10 py-4 flex justify-between items-center shadow-2xl relative`}
     >
       {/* Mobile Logo */}
       <div className="mt-2 h-8 w-36 md:hidden">
-        <Image
-          src={
-            isDarkMode
-              ? commonContent.navigation.logo.dark
-              : commonContent.navigation.logo.light
-          }
-          alt={commonContent.navigation.logo.alt}
-          width={144}
-          height={32}
-          className="w-full h-full object-cover"
-        />
+        {theme ? (
+          <Image
+            width={500}
+            src={LogoWhite}
+            alt="Blockchainunn"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <Image
+            width={500}
+            src={LogoBlack}
+            alt="Blockchainunn"
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
 
       {/* Mobile Menu Toggle Button */}
-      <div className="flex gap-4 items-center md:hidden">
+      <div className="flex gap-4 items-center md:hidden ">
         <ThemeSwitch />
-        <div onClick={toggleMobileMenu}>
+        <div className="" onClick={toggleMobileMenu}>
           {!isMobileMenuOpen && <FaBars size={28} className="cursor-pointer" />}
         </div>
       </div>
@@ -55,114 +71,77 @@ export function Navbar() {
       {/* Desktop Navigation */}
       <div className="hidden md:flex max-lg:gap-8 gap-16 items-center justify-between w-full">
         <div className="mt-2 h-8 w-36">
-          <Image
-            src={
-              isDarkMode
-                ? commonContent.navigation.logo.dark
-                : commonContent.navigation.logo.light
-            }
-            alt={commonContent.navigation.logo.alt}
-            width={144}
-            height={32}
-            className="w-full h-full object-cover"
-          />
+          {theme ? (
+            <Image
+              width={500}
+              src={LogoWhite}
+              alt="Blockchainunn"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <Image
+              width={500}
+              src={LogoBlack}
+              alt="Blockchainunn"
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
 
-        <div className="flex gap-8 items-center">
-          {commonContent.navigation.links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={cn(
-                "font-medium transition-colors duration-200",
-                currentPage === link.label.toLowerCase()
-                  ? "text-blockchain-green"
-                  : isDarkMode
-                  ? "text-ash hover:text-blockchain-green"
-                  : "text-black hover:text-blockchain-green"
-              )}
-            >
-              {link.label}
-            </Link>
+        <ul className="flex gap-8 max-lg:gap-4">
+          {navItems.map((item) => (
+            <li key={item} className="relative cursor-pointer">
+              <Link href={getNavItemLink(item)} className="block">
+                <span>{item}</span>
+                {/* Show the green bar if this is the active page */}
+                {currentPage === item.toLowerCase() && (
+                  <div className="absolute left-1/4 transform -translate-x-1/2 bottom-[-4px] w-1/2 border-b-2 border-green-600 rounded-sm"></div>
+                )}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <div className="flex gap-4 items-center">
+        <div className="flex items-center gap-4">
           <ThemeSwitch />
-          <div className="flex gap-3">
-            {commonContent.footer.socialLinks.slice(0, 3).map((social) => (
-              <SocialLink
-                key={social.platform}
-                href={social.href}
-                icon={social.icon}
-                platform={social.platform}
-              />
-            ))}
-          </div>
+          <SocialLink
+            to={"https://www.linkedin.com/company/blockchainunn/"}
+            type={"linkedin"}
+          />
+          <SocialLink to={""} type={"telegram"} />
+          <SocialLink to={"https://x.com/BlockchainUNN"} type={"x"} />
+          <SocialLink
+            to={"https://www.instagram.com/blockchainunn"}
+            type={"instagram"}
+          />
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
-        <div
-          className={cn(
-            "absolute top-0 left-0 w-full h-screen flex flex-col gap-8 px-8 py-6 z-50 md:hidden",
-            isDarkMode ? "bg-dark-mode" : "bg-white"
-          )}
-        >
-          <div className="flex justify-between items-center">
-            <div className="h-8 w-36">
-              <Image
-                src={
-                  isDarkMode
-                    ? commonContent.navigation.logo.dark
-                    : commonContent.navigation.logo.light
-                }
-                alt={commonContent.navigation.logo.alt}
-                width={144}
-                height={32}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <FaTimes
-              size={28}
-              className="cursor-pointer"
-              onClick={toggleMobileMenu}
-            />
-          </div>
-
-          <div className="flex flex-col gap-6 mt-8">
-            {commonContent.navigation.links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={toggleMobileMenu}
-                className={cn(
-                  "text-lg font-medium transition-colors duration-200",
-                  currentPage === link.label.toLowerCase()
-                    ? "text-blockchain-green"
-                    : isDarkMode
-                    ? "text-ash hover:text-blockchain-green"
-                    : "text-black hover:text-blockchain-green"
-                )}
+        <div className="md:hidden absolute flex flex-col top-2 left-0 w-full h-fit bg-white z-10 shadow-lg p-4 overflow-hidden ">
+          <FaTimes
+            size={25}
+            onClick={toggleMobileMenu}
+            className="self-end cursor-pointer"
+          />
+          <ul className="flex flex-col gap-4 p-2">
+            {navItems.map((item) => (
+              <li
+                key={item}
+                className="cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                {link.label}
-              </Link>
+                <Link href={getNavItemLink(item)} className="block">
+                  <span>{item}</span>
+                </Link>
+              </li>
             ))}
-          </div>
-
-          <div className="flex gap-4 mt-8">
-            {commonContent.footer.socialLinks.map((social) => (
-              <SocialLink
-                key={social.platform}
-                href={social.href}
-                icon={social.icon}
-                platform={social.platform}
-              />
-            ))}
-          </div>
+          </ul>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default Navbar;

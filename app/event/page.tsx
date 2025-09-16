@@ -3,8 +3,8 @@
 import { BlockathonHero } from "@/components/event/BlockathonHero";
 import { BlockathonSchedule } from "@/components/event/BlockathonSchedule";
 import { BlockathonSpeakers } from "@/components/event/BlockathonSpeakers";
-import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/NavBar";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/NavBar";
 
 export default function BlockathonEventPage() {
   return (

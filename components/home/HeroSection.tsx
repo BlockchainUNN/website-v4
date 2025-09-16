@@ -1,262 +1,266 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import React from "react";
+import odoi from "../../public/assets/team-pics/odoi.png";
+import cheta from "../../public/assets/team-pics/cheta.png";
+import adaugo from "../../public/assets/team-pics/adaugo.png";
+import dony from "../../public/assets/team-pics/dony.png";
+import chukwuebuka from "../../public/assets/team-pics/chukwuebuka.png";
 import {
+  FaArrowRight,
+  FaCode,
+  FaGift,
+  FaPencilAlt,
+  FaPenNib,
   FaPeopleCarry,
-  FaPenNib,
-  FaCode,
-  FaPencilAlt,
-  FaGift,
 } from "react-icons/fa";
+import Image from "next/image";
+import BlockathonHeader from "../layout/BlockathonHeader";
 import { useTheme } from "@/hooks/store/useTheme";
-import { useAttendeeCount } from "@/hooks/crud/useEvents";
-import { useHackathonState } from "@/hooks/store/useHackathonState";
-import { homeContent } from "@/content/home";
-import { calculateTimeLeft } from "@/lib/utils";
-import { Text } from "@/components/common/Text";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useHackerCount } from "@/hooks/crud/useHacker";
+import Navbar from "../layout/NavBar";
 
-const iconMap = {
-  FaPenNib,
-  FaCode,
-  FaPencilAlt,
-  FaGift,
-};
-
-export function HeroSection() {
+const HeroSection = () => {
   const { isDarkMode } = useTheme();
-  const { blockathonId, hackathonId, setEventIds } = useHackathonState();
-  const [timeLeft, setTimeLeft] = useState(
-    calculateTimeLeft(homeContent.upcomingEvents.eventDate)
-  );
-
-  // Set default event IDs (these would normally come from API/config)
-  useEffect(() => {
-    if (!blockathonId || !hackathonId) {
-      setEventIds("blockathon-2024", "hackathon-2024");
-    }
-  }, [blockathonId, hackathonId, setEventIds]);
-
-  // Get attendee and hacker counts
-  const { data: attendeeCount } = useAttendeeCount(blockathonId);
-  const { data: hackerCount } = useHackerCount(hackathonId);
-
-  // Update countdown timer
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(homeContent.upcomingEvents.eventDate));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+  const theme = isDarkMode;
   return (
-    <div
-      className={cn(
-        "w-full min-h-screen flex flex-col items-center justify-center px-4 py-20",
-        isDarkMode ? "text-white" : "text-black"
-      )}
-    >
-      <div className="max-w-6xl w-full flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left Side - Content */}
-        <div className="flex-1 flex flex-col gap-8">
-          <div className="text-center lg:text-left">
-            <Text
-              variant="h1"
-              size="6xl"
-              weight="black"
-              font="raleway"
-              className="mb-4 text-4xl md:text-6xl"
-              color={isDarkMode ? "white" : "black"}
-            >
-              {homeContent.hero.title}
-            </Text>
-            <Text
-              variant="p"
-              size="xl"
-              className="mb-6 text-lg md:text-xl"
-              color={isDarkMode ? "muted" : "black"}
-            >
-              {homeContent.hero.subtitle}
-            </Text>
-            <Text
-              variant="p"
-              size="lg"
-              className="mb-8"
-              color={isDarkMode ? "muted" : "black"}
-            >
-              {homeContent.hero.description}
-            </Text>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button
-              asChild
-              size="lg"
-              className="bg-blockchain-green hover:bg-blockchain-green/90"
-            >
-              <Link href="/event/registration">Join Community</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/event">View Events</Link>
-            </Button>
-          </div>
-
-          {/* Countdown Timer */}
-          <div className="flex flex-col items-center lg:items-start gap-4">
-            <Text size="lg" weight="semibold" color="green">
-              Next Event In:
-            </Text>
-            <div className="flex gap-4">
-              {[
-                { label: "Days", value: timeLeft.days },
-                { label: "Hours", value: timeLeft.hours },
-                { label: "Minutes", value: timeLeft.minutes },
-                { label: "Seconds", value: timeLeft.seconds },
-              ].map(({ label, value }) => (
-                <div
-                  key={label}
-                  className={cn(
-                    "flex flex-col items-center p-3 rounded-lg min-w-16",
-                    isDarkMode ? "bg-dark-mode" : "bg-gray-100"
-                  )}
-                >
-                  <Text size="2xl" weight="bold" color="green">
-                    {value.toString().padStart(2, "0")}
-                  </Text>
-                  <Text size="sm" color="muted">
-                    {label}
-                  </Text>
-                </div>
-              ))}
+    <div className="w-full flex flex-col items-center overflow-hidden">
+      <BlockathonHeader />
+      <div
+        className={`${
+          theme ? "bg-dark-mode " : "bg-transparent"
+        } flex flex-col md:py-4 items-center w-full font-raleway relative overflow-x-hidden `}
+      >
+        <Navbar />
+        <div className="text-center flex flex-col items-center w-[92%] md:w-[80%] mx-auto mt-16 mb-6">
+          <h1 className="text-[#02641c] font-[900] text-[50px] md:text-[120px] font-raleway-black leading-none">
+            BLOCKCHAIN
+          </h1>
+          <div className="flex items-center gap-4 ">
+            <h1 className="text-[#02641c] font-extrabold text-[50px] md:text-[120px] font-raleway-black leading-none">
+              UNN
+            </h1>
+            <div className="flex items-center justify-center bg-gradient-to-r from-[#02641c] to-[#04CA39] p-2 md:p-4 w-[80%] md:[50%]">
+              <p className="text-[12px] md:text-[30px] text-center w-full text-white border-t border-b border-white p-2 md:p-4 font-wallpoet">
+                Learn . Build . Innovate
+              </p>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Right Side - Stats */}
-        <div className="flex-1 flex flex-col gap-6">
-          {/* Member Count */}
-          <div
-            className={cn(
-              "flex flex-col items-center p-6 rounded-lg",
-              "bg-gradient-to-br from-blockchain-green/20 to-blockchain-green/10",
-              "border border-blockchain-green/20"
-            )}
-          >
-            <Text size="4xl" weight="bold" color="green" className="mb-2">
-              {homeContent.hero.stats.members}
-            </Text>
-            <Text size="lg" weight="medium" align="center">
-              Community Members
-            </Text>
+      <div
+        className={`${
+          theme
+            ? "bg-blockchain-green bg-opacity-40 border border-blockchain-green"
+            : "bg-blockchain-white  border border-blockchain-green"
+        } absolute -left-4 top-[46%] rotate-12 w-[175px] rounded-r-full p-2 hidden md:flex`}
+      >
+        <div className="relative">
+          <Image
+            width={500}
+            src={odoi}
+            alt="i"
+            className="rounded-full  w-[60px] h-[60px] object-cover"
+          />
+          <Image
+            width={500}
+            src={cheta}
+            alt="i"
+            className="rounded-full  w-[60px] h-[60px] absolute left-8 top-0 object-cover"
+          />
+          <Image
+            width={500}
+            src={chukwuebuka}
+            alt="i"
+            className="rounded-full w-[60px] h-[60px] absolute left-16 top-0 object-cover"
+          />
+          <Image
+            width={500}
+            src={adaugo}
+            alt="i"
+            className="rounded-full w-[60px] h-[60px] absolute left-24 top-0 object-cover"
+          />
+        </div>
+      </div>
+
+      <div className="absolute right-0 top-[44%] overflow-hidden w-[175px] h-[120px] hidden md:block">
+        <div
+          className={`${
+            theme
+              ? "bg-blockchain-green bg-opacity-40 border border-blockchain-green border-r-0"
+              : "bg-blockchain-white border border-blockchain-green border-r-0"
+          } absolute top-4 -right-4 -rotate-12 w-[175px] rounded-l-full p-2 flex`}
+        >
+          <div className="relative">
+            <Image
+              width={500}
+              src={adaugo}
+              alt="i"
+              className="rounded-full w-[60px] h-[60px] object-cover"
+            />
+            <Image
+              width={500}
+              src={chukwuebuka}
+              alt="i"
+              className="rounded-full w-[60px] h-[60px] absolute left-8 top-0 object-cover"
+            />
+            <Image
+              width={500}
+              src={cheta}
+              alt="i"
+              className="rounded-full w-[60px] h-[60px] absolute left-16 top-0 object-cover"
+            />
+            <Image
+              width={500}
+              src={odoi}
+              alt="i"
+              className="rounded-full w-[60px] h-[60px] absolute left-24 top-0 object-cover"
+            />
           </div>
+        </div>
+      </div>
 
-          {/* Events & Partners */}
-          <div className="grid grid-cols-2 gap-4">
-            <div
-              className={cn(
-                "flex flex-col items-center p-4 rounded-lg",
-                isDarkMode ? "bg-dark-mode" : "bg-white shadow-md"
-              )}
-            >
-              <Text size="2xl" weight="bold" color="green">
-                {homeContent.hero.stats.events}
-              </Text>
-              <Text size="sm" align="center" color="muted">
-                Events Hosted
-              </Text>
-            </div>
-            <div
-              className={cn(
-                "flex flex-col items-center p-4 rounded-lg",
-                isDarkMode ? "bg-dark-mode" : "bg-white shadow-md"
-              )}
-            >
-              <Text size="2xl" weight="bold" color="green">
-                {homeContent.hero.stats.partners}
-              </Text>
-              <Text size="sm" align="center" color="muted">
-                Partners Worldwide
-              </Text>
+      <div
+        className={` ${
+          theme ? "text-white" : "text-black"
+        } w-[80%] md:w-[50%] text-center mt-2 md:mt-0 mb-8`}
+      >
+        <h2 className="text-[10px] md:text-[20px]">
+          We&apos;re a student community connected to providing members with
+          educational and professional opportunities in the blockchain industry.
+        </h2>
+      </div>
+
+      <div className="flex flex-col md:flex-row items-center gap-4 mb-12 md:mb-20">
+        <button className="bg-gradient-to-r from-[#02641c] to-[#04CA39] flex items-center justify-center gap-2 w-[200px] md:w-[180px] h-[55px] md:h-[65px]  rounded-full text-white">
+          Get Started <FaArrowRight size={14} />
+        </button>
+        <div className="flex items-center bg-gradient-to-r from-[#02641c] to-[#04CA39] w-[150px] md:w-[180px] h-[55px] md:h-[65px]  rounded-full">
+          <button className="bg-white w-[95%] h-[90%] rounded-full text-green-800">
+            Newsletter
+          </button>
+        </div>
+      </div>
+
+      <div
+        className={`${
+          theme
+            ? "bg-dark-mode border-t border-b border-gray-600"
+            : "bg-white border-t border-b border-gray-500"
+        } flex gap-1 md:gap-2 items-center justify-center w-full p-4 md:px-16  md:py-8 text-[14px] md:text-[60px] mb-2 md:mb-4 `}
+      >
+        <h2 className={`${theme ? "text-white" : "text-black"} font-semibold `}>
+          Accelerate Your Career With
+        </h2>
+        <h2 className="text-green-800 font-semibold">BlockchainUNN</h2>
+      </div>
+
+      <div
+        className={`${
+          theme
+            ? "bg-dark-mode text-white border-t border-b border-gray-600"
+            : "bg-white border-t border-b border-gray-500 text-black "
+        } flex md:flex-row flex-col items-center justify-center gap-8 w-full h-[fit-content] px-6 md:px-24 py-4`}
+      >
+        <div className="flex flex-col gap-4 items-start p-4 border border-green-500 rounded-md w-full md:w-[40%] mt-6">
+          <h3 className="font-semibold">Community STATS</h3>
+          <div className="relative flex ">
+            <Image
+              width={500}
+              src={dony}
+              alt="i"
+              className="rounded-full border border-black w-[70px] h-[70px] object-cover"
+            />
+            <Image
+              width={500}
+              src={adaugo}
+              alt="i"
+              className="rounded-full border border-black w-[70px] h-[70px] absolute left-14 object-cover"
+            />
+            <Image
+              width={500}
+              src={chukwuebuka}
+              alt="i"
+              className="rounded-full border border-black w-[70px] h-[70px] absolute left-28 object-cover"
+            />
+            <div className="flex items-center justify-center rounded-full p-4  w-[70px] h-[70px] absolute left-[10.5rem] text-[12px] font-wallpoet bg-[#02641C] text-[#2CE85E]">
+              +4000K
             </div>
           </div>
+          <h2 className="text-[80px] md:text-[100px] font-bold mb-0">4000+</h2>
+          <p className="-mt-8 font-semibold">Active members</p>
+        </div>
 
-          {/* Active Communities */}
-          <div
-            className={cn(
-              "flex flex-col p-6 rounded-lg",
-              "bg-gradient-to-br from-[#02641C] to-[#02641C]/80",
-              "text-[#2CE85E]"
-            )}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Text size="3xl" weight="bold">
-                {homeContent.hero.stats.communities}
-              </Text>
-              <Text size="sm" weight="medium">
-                Active Sub-Communities
-              </Text>
-              <FaPeopleCarry className="hidden md:flex" />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              {homeContent.hero.communities.map((community) => {
-                const IconComponent =
-                  iconMap[community.icon as keyof typeof iconMap];
-                return (
-                  <div
-                    key={community.name}
-                    className="flex gap-2 items-center text-sm"
-                  >
-                    {IconComponent && <IconComponent size={12} />}
-                    <Text size="sm">{community.name}</Text>
+        <div className="relative w-full md:w-[40%]">
+          <div className="bg-[#02641C] rounded-md w-full h-[160px] mb-8"></div>
+          <div className="bg-[#02641C] rounded-md w-full h-[160px]"></div>
+          <div className="absolute flex flex-col items-center rounded-md py-4 w-full top-0 h-full">
+            <div className="relative flex flex-col gap-4 bg-black rounded-md py-4 px-2 w-[95%] h-full">
+              <div className="-ml-6 flex flex-row gap-4">
+                <div className="flex flex-col items-center bg-[#02641C] text-[#2CE85E] p-4 w-[30%] h-[130px] rounded-md">
+                  <h2 className="font-semibold text-[2rem] lg:text-[40px]">
+                    20
+                  </h2>
+                  <p className="text-[0.8rem] text-center lg:text-[1rem]">
+                    Hackathon Wins
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-gradient-to-b from-[#000] to-[#0E0E0E] px-8 py-4 w-[30%] h-[130px] text-[#2CE85E] rounded-md">
+                  <h2 className="font-semibold text-[2rem] lg:text-[40px]">
+                    $40k
+                  </h2>
+                  <p className="text-[0.8rem] text-center lg:text-[1rem]">
+                    Prize Money
+                  </p>
+                </div>
+                <div className="flex flex-col items-center bg-gradient-to-b from-[#000] to-[#0E0E0E] px-8 py-4 w-[32%] h-[130px] text-[#2CE85E] rounded-md">
+                  <h2 className="font-semibold text-[2rem] lg:text-[40px]">
+                    50+
+                  </h2>
+                  <p className="text-[0.8rem] text-center lg:text-[1rem]">
+                    Community Events
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-row gap-4 items-center justify-evenly">
+                <div className="flex flex-col items-center px-2 md:px-8 py-4  text-[#2CE85E] rounded-md">
+                  <h2 className="flex items-center gap-2 font-semibold text-[2rem] lg:text-[40px]">
+                    <span className="text-[2rem]">🌍</span> 20+
+                  </h2>
+                  <p className="text-[0.8rem] text-center lg:text-[1rem]">
+                    Partners Worldwide
+                  </p>
+                </div>
+                <div className="flex flex-col items-start bg-[#02641C] text-[#2CE85E] px-4 md:px-8 md:py-4 py-2  rounded-md w-[70%] md:w-[50%] h-[140px]">
+                  <h3 className="font-semibold flex text-[0.6rem] gap-1 md:text[1.rem] items-center md:gap-2">
+                    <span className="text-[1rem] md:text-[30px]">4</span>Active
+                    Sub-Communities <FaPeopleCarry className="hidden md:flex" />
+                  </h3>
+                  <div className="flex flex-col gap-4 items-start w-full">
+                    <div className="flex flex-col sm-420:flex-row justify-between w-full text-[0.8rem]">
+                      <span className="flex gap-2 items-center  ">
+                        <FaPenNib size={10} /> Designers
+                      </span>
+                      <span className="flex gap-2 items-center ">
+                        <FaCode size={10} /> Developers
+                      </span>
+                    </div>
+                    <div className="flex flex-col md:flex-row justify-between w-full text-[0.8rem]">
+                      <span className="flex gap-2 items-center ">
+                        <FaPencilAlt size={10} /> Writers
+                      </span>
+                      <span className="flex gap-2 items-center ">
+                        <FaGift size={10} />
+                        AirdropEdu
+                      </span>
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Live Counts */}
-          {(attendeeCount || hackerCount) && (
-            <div className="grid grid-cols-2 gap-4">
-              {attendeeCount && (
-                <div
-                  className={cn(
-                    "flex flex-col items-center p-4 rounded-lg",
-                    isDarkMode ? "bg-dark-mode" : "bg-white shadow-md"
-                  )}
-                >
-                  <Text size="xl" weight="bold" color="green">
-                    {attendeeCount.attendeeCount || 0}
-                  </Text>
-                  <Text size="xs" align="center" color="muted">
-                    Event Attendees
-                  </Text>
-                </div>
-              )}
-              {hackerCount && (
-                <div
-                  className={cn(
-                    "flex flex-col items-center p-4 rounded-lg",
-                    isDarkMode ? "bg-dark-mode" : "bg-white shadow-md"
-                  )}
-                >
-                  <Text size="xl" weight="bold" color="green">
-                    {hackerCount.hackerCount || 0}
-                  </Text>
-                  <Text size="xs" align="center" color="muted">
-                    Registered Hackers
-                  </Text>
-                </div>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default HeroSection;
