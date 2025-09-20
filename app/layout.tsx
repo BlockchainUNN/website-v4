@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Raleway, JetBrains_Mono } from "next/font/google";
+import {
+  Inter,
+  Raleway,
+  JetBrains_Mono,
+  Hanken_Grotesk,
+} from "next/font/google";
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,6 +19,11 @@ const raleway = Raleway({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
 });
 
 export const metadata: Metadata = {
@@ -41,12 +51,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${raleway.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${raleway.variable} ${jetbrainsMono.variable} ${hanken.variable}`}
+    >
       <body className={`${inter.className} antialiased`}>
         <Providers>
           <ErrorBoundary>
-            <div className="flex flex-col items-center min-h-screen">
-              <div className="w-full max-w-screen-2xl">{children}</div>
+            <div className="min-h-screen">
+              <div className="w-full">{children}</div>
             </div>
             <ToastContainer
               position="top-right"
