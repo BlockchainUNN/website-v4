@@ -21,7 +21,7 @@ export default function EventHeader() {
         />
       </div>
 
-      <div className="mr-12 hidden md:block absolute right-12 top-1/2 -translate-y-1/2">
+      <div className="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2">
         <StackGridButton
           text="Register Now"
           width={160}
@@ -34,7 +34,7 @@ export default function EventHeader() {
       </div>
 
       <div
-        className="absolute right-2 top-1/2 -translate-y-1/2 md:hidden"
+        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 lg:hidden"
         title="Register Now"
       >
         <StackGridButton

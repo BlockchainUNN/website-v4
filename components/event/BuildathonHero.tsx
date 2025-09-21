@@ -292,7 +292,7 @@ import StackGridButton from "./stack-grid-button";
 export default function BuildathonHero() {
   return (
     <section className="w-full h-screen bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center relative">
-      <div className="w-full md:max-w-3xl mx-auto">
+      <div className="w-full md:max-w-2xl mx-auto">
         <div className="w-full px-6 md:px-0">
           <Image
             src="/assets/events/buildathon.png"
