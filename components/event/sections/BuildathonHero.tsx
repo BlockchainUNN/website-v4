@@ -287,12 +287,13 @@
 
 import Image from "next/image";
 import React from "react";
-import StackGridButton from "./stack-grid-button";
+import StackGridButton from "../stack-grid-button";
+import { stats } from "./BuildathonStats";
 
 export default function BuildathonHero() {
   return (
-    <section className="w-full h-screen bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center relative">
-      <div className="w-full md:max-w-2xl mx-auto">
+    <section className="w-full h-auto pt-36 lg:pt-64 bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center relative">
+      <div className="w-full md:max-w-2xl mx-auto border -translate-y-20">
         <div className="w-full px-6 md:px-0">
           <Image
             src="/assets/events/buildathon.png"
@@ -335,7 +336,7 @@ export default function BuildathonHero() {
         </div>
       </div>
 
-      <div className="w-full  bg-[#024539] tracking-[0.3rem] py-3 md:py-6 absolute bottom-0 left-0 px-2">
+      <div className="w-full bg-[#024539] tracking-[0.3rem] py-3 md:py-6 px-2">
         <div className="py-2 md:py-4">
           <h3 className="uppercase text-white text-center text-base md:text-xl font-normal">
             4th edition (2025) holds @ uba hall of fame, unn, nsukka
@@ -345,6 +346,31 @@ export default function BuildathonHero() {
           <h3 className="uppercase text-white text-center text-base md:text-4xl font-semibold">
             28TH OCT. - 2ND NOV, 2025
           </h3>
+        </div>
+      </div>
+
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 items-center">
+        <div className="bg-[#C89A04] h-full flex items-center p-8 justify-center">
+          <div className="text-white text-center">
+            <h3 className="font-semibold flex gap-2 text-5xl">
+              <Image
+                src="/assets/events/cup.svg"
+                width={50}
+                height={50}
+                alt="Championship Cup"
+              />
+              ${stats.prizePool}+
+            </h3>
+            <p className="text-2xl">prize pool to be won</p>
+          </div>
+        </div>
+
+        <div className="bg-[#51604D] h-full flex items-center p-8 justify-center">
+          <div className="text-white text-center">
+            <h3 className="font-semibold text-xl md:text-4xl tracking-[0.36%]">
+              LEARN. BUILD. INNOVATE
+            </h3>
+          </div>
         </div>
       </div>
     </section>

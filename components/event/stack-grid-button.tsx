@@ -1,45 +1,6 @@
+import { StackGridButtonProps } from "@/types/speaker.types";
 import { ArrowRight } from "lucide-react";
-import React, { ReactNode, CSSProperties, MouseEvent } from "react";
-
-type Variant = "button" | "badge" | "social" | "icon" | "navigation";
-type Shape = "rounded" | "circular" | "pill";
-type Size = "small" | "medium" | "large";
-
-interface StackGridButtonProps {
-  // Content
-  text?: string;
-  icon?: ReactNode;
-
-  // Style properties
-  variant?: Variant;
-  shape?: Shape;
-  size?: Size;
-
-  // Colors
-  bgColor?: string;
-  textColor?: string;
-  shadowColor?: string;
-  borderColor?: string;
-
-  // Arrow specific
-  hasArrow?: boolean;
-  arrowBgColor?: string;
-  arrowTextColor?: string;
-  arrowIcon?: ReactNode;
-
-  // Shadow/offset
-  shadowOffset?: { x: number; y: number };
-  shadowBlur?: number;
-
-  // Behavior
-  clickable?: boolean;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-
-  // Custom styles
-  customClass?: string;
-  width?: string | number;
-  height?: string | number;
-}
+import { CSSProperties, MouseEvent } from "react";
 
 export default function StackGridButton({
   // Content
@@ -75,6 +36,7 @@ export default function StackGridButton({
   customClass = "",
   width = "auto",
   height = "auto",
+  disabled = false,
 }: StackGridButtonProps) {
   // Shape classes
   const getShapeClass = (): string => {
@@ -144,7 +106,7 @@ export default function StackGridButton({
     transform
     relative
     ${
-      clickable
+      clickable && !disabled
         ? "hover:scale-103 active:scale-97 cursor-pointer"
         : "cursor-default"
     }
@@ -154,7 +116,7 @@ export default function StackGridButton({
     .replace(/\s+/g, " ");
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
-    if (clickable && onClick) {
+    if (clickable && !disabled && onClick) {
       onClick(e);
     }
   };
@@ -162,12 +124,12 @@ export default function StackGridButton({
   if (hasArrow) {
     return (
       <button
-        className={`${baseClasses} grid grid-cols-6 !p-0 overflow-hidden rounded-md !w-full`}
+        className={`${baseClasses} grid grid-cols-[1fr_56px] !p-0 overflow-hidden rounded-md !w-full`}
         style={buttonStyle}
         onClick={handleClick}
-        disabled={!clickable}
+        disabled={!clickable || disabled}
       >
-        <span className="col-span-5 px-6 py-3">
+        <span className="px-6 py-3">
           {icon && (
             <span className="flex items-center justify-center">{icon}</span>
           )}
@@ -180,7 +142,7 @@ export default function StackGridButton({
           )}
         </span>
         <span
-          className="flex items-center justify-center p-2 col-span-1  h-full"
+          className="flex items-center justify-center p-2  h-full"
           style={{
             backgroundColor: arrowBgColor,
             color: arrowTextColor,
@@ -194,10 +156,12 @@ export default function StackGridButton({
 
   return (
     <button
-      className={baseClasses}
+      className={
+        baseClasses + " " + (disabled ? "grayscale-75 opacity-70" : "")
+      }
       style={buttonStyle}
       onClick={handleClick}
-      disabled={!clickable}
+      disabled={!clickable || disabled}
     >
       {icon && <span className="flex items-center justify-center">{icon}</span>}
       {text && !icon && <span>{text}</span>}

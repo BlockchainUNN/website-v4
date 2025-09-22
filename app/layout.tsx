@@ -33,11 +33,12 @@ export const metadata: Metadata = {
   keywords:
     "blockchain, cryptocurrency, UNN, university, Nigeria, community, education, web3",
   authors: [{ name: "BlockchainUNN Team" }],
-  openGraph: {
-    title: "BlockchainUNN - University of Nigeria Blockchain Community",
-    description: "Leading blockchain community at the University of Nigeria",
-    images: ["/images/og-image.png"],
-  },
+  // commented out because it was throwing a warning
+  // openGraph: {
+  //   title: "BlockchainUNN - University of Nigeria Blockchain Community",
+  //   description: "Leading blockchain community at the University of Nigeria",
+  //   images: ["/images/og-image.png"],
+  // },
   twitter: {
     card: "summary_large_image",
     title: "BlockchainUNN",
