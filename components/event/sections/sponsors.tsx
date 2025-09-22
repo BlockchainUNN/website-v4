@@ -4,7 +4,7 @@ import StrokedText from "../stroked-text";
 export default function BuildathonSponsors() {
   return (
     <section
-      className="w-full min-h-screen h-auto bg-cover bg-center bg-repeat-y py-32 lg:px-12 px-4"
+      className="w-full min-h-screen h-auto bg-cover bg-center bg-repeat-y py-12 lg:py-32 lg:px-12 px-4"
       style={{
         backgroundImage:
           "url('/assets/events/sponsor_bg.png'), linear-gradient(0deg, #02641C, #02641C)",
