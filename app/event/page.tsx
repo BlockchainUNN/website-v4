@@ -1,11 +1,12 @@
 "use client";
 
-import { BuildathonStats } from "@/components/event/sections/BuildathonStats";
-import { BlockathonSpeakers } from "@/components/event/sections/BlockathonSpeakers";
-import BuildathonHero from "@/components/event/sections/BuildathonHero";
+import { BuildathonStats } from "@/components/event/sections/stats";
+import { BlockathonSpeakers } from "@/components/event/sections/speakers";
+import BuildathonHero from "@/components/event/sections/hero";
 import EventHeader from "@/components/event/event-header";
-import BuildathonOverview from "@/components/event/sections/BuildathonOverview";
+import BuildathonOverview from "@/components/event/sections/overview";
 import OurJourneySoFar from "@/components/event/sections/OurJourneySoFar";
+import BuildathonSponsors from "@/components/event/sections/sponsors";
 
 export default function BlockathonEventPage() {
   return (
@@ -28,7 +29,7 @@ export default function BlockathonEventPage() {
       <OurJourneySoFar />
 
       {/* Prizes Section */}
-      {/* <BlockathonPrizes /> */}
+      <BuildathonSponsors />
 
       {/* Gallery Section */}
       {/* <BlockathonGallery /> */}
