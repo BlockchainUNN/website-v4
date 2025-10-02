@@ -5,6 +5,8 @@ import {
   JetBrains_Mono,
   Hanken_Grotesk,
 } from "next/font/google";
+import localFont from "next/font/local";
+
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,6 +26,15 @@ const jetbrainsMono = JetBrains_Mono({
 const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-hanken",
+});
+
+// Import a local font in your Next JS project
+
+const myFont = localFont({
+  src: "../public/assets/fonts/digital_7/digital_7_mono.ttf",
+  weight: "400",
+  style: "normal",
+  variable: "--font-digital-7",
 });
 
 export const metadata: Metadata = {
@@ -54,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${raleway.variable} ${jetbrainsMono.variable} ${hanken.variable}`}
+      className={`${raleway.variable} ${jetbrainsMono.variable} ${hanken.variable} ${myFont.variable}`}
     >
       <body className={`${inter.className} antialiased`}>
         <Providers>

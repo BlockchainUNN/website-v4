@@ -7,6 +7,8 @@ import EventHeader from "@/components/event/event-header";
 import BuildathonOverview from "@/components/event/sections/overview";
 import OurJourneySoFar from "@/components/event/sections/OurJourneySoFar";
 import BuildathonSponsors from "@/components/event/sections/sponsors";
+import BuildathonCountdown from "@/components/event/sections/countdown";
+import BuildathonCTA from "@/components/event/sections/cta";
 
 export default function BlockathonEventPage() {
   return (
@@ -31,8 +33,11 @@ export default function BlockathonEventPage() {
       {/* Prizes Section */}
       <BuildathonSponsors />
 
-      {/* Gallery Section */}
-      {/* <BlockathonGallery /> */}
+      {/* Countdown Section */}
+      <BuildathonCountdown />
+
+      {/* CTA Section */}
+      <BuildathonCTA />
     </div>
   );
 }

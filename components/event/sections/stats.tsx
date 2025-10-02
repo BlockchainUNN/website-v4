@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import StackGridButton from "../stack-grid-button";
+import { motion } from "motion/react";
 
 export const stats = {
   prizePool: 5000,
@@ -22,7 +23,13 @@ export function BuildathonStats() {
         }}
       >
         <div className="bg-white w-full mt-auto py-8 relative">
-          <div className="absolute -top-14 lg:-top-42 right-6 md:right-12 z-10">
+          <motion.div
+            className="absolute -top-14 lg:-top-42 right-6 md:right-12 z-10"
+            initial={{ rotate: -6, opacity: 0 }}
+            whileInView={{ rotate: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <Image
               src="/assets/events/wagmi_sticker.png"
               width={120}
@@ -30,8 +37,14 @@ export function BuildathonStats() {
               className="w-24 h-24 md:w-48 md:h-48"
               alt="Wagmi Badge"
             />
-          </div>
-          <div className="px-4 lg:px-8 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+          </motion.div>
+          <motion.div
+            className="px-4 lg:px-8 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ staggerChildren: 0.08 }}
+          >
             <div className="flex gap-2 items-center h-full p-2">
               <div className="flex items-center">
                 <StackGridButton
@@ -160,7 +173,7 @@ export function BuildathonStats() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

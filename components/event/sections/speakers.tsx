@@ -7,6 +7,7 @@ import useSpeakersControls, {
   speakers,
 } from "@/hooks/custom/useSpeakersControls";
 import { ViewAllSpeakersButton } from "../speaker-section/view-all-speakers-button";
+import { motion } from "motion/react";
 
 export function BlockathonSpeakers() {
   const {
@@ -29,14 +30,27 @@ export function BlockathonSpeakers() {
       }}
     >
       <div className="w-full px-4">
-        <SpeakersHeader
-          currentIndex={currentIndex}
-          offset={offset}
-          onPrevious={handlePrevious}
-          onNext={handleNext}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6 }}
+        >
+          <SpeakersHeader
+            currentIndex={currentIndex}
+            offset={offset}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />
+        </motion.div>
 
-        <div className="max-w-[1440px] mx-auto w-full relative overflow-hidden">
+        <motion.div
+          className="max-w-[1440px] mx-auto w-full relative overflow-hidden"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <DesktopSpeakersCarousel
             speakers={speakers}
             currentIndex={currentIndex}
@@ -50,9 +64,16 @@ export function BlockathonSpeakers() {
             onPrevious={handleMobilePrevious}
             onNext={handleMobileNext}
           />
-        </div>
+        </motion.div>
 
-        <ViewAllSpeakersButton />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <ViewAllSpeakersButton />
+        </motion.div>
       </div>
     </section>
   );

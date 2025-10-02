@@ -1,5 +1,6 @@
 import React from "react";
 import StrokedText from "../stroked-text";
+import { motion } from "motion/react";
 
 export default function BuildathonSponsors() {
   return (
@@ -10,7 +11,13 @@ export default function BuildathonSponsors() {
           "url('/assets/events/sponsor_bg.png'), linear-gradient(0deg, #02641C, #02641C)",
       }}
     >
-      <div className="w-full mb-12">
+      <motion.div
+        className="w-full mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6 }}
+      >
         <StrokedText
           text="Platinum Sponsors"
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
@@ -22,9 +29,15 @@ export default function BuildathonSponsors() {
           <div className="w-full border border-white h-[262px] bg-white"></div>
           <div className="w-full border border-white h-[262px] bg-white"></div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-full mb-12">
+      <motion.div
+        className="w-full mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6, delay: 0.05 }}
+      >
         <StrokedText
           text="Gold Sponsors"
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
@@ -38,9 +51,15 @@ export default function BuildathonSponsors() {
           <div className="w-full border border-white h-[262px] bg-white"></div>
           <div className="w-full border border-white h-[262px] bg-white"></div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-full mb-12">
+      <motion.div
+        className="w-full mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
         <StrokedText
           text="community partners"
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
@@ -52,9 +71,15 @@ export default function BuildathonSponsors() {
           <div className="w-full border border-white h-[262px] bg-white"></div>
           <div className="w-full border border-white h-[262px] bg-white"></div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="w-full mb-12">
+      <motion.div
+        className="w-full mb-12"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6, delay: 0.15 }}
+      >
         <StrokedText
           text="media partners"
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
@@ -65,7 +90,7 @@ export default function BuildathonSponsors() {
           <div className="w-full border border-white h-[262px] bg-white"></div>
           <div className="w-full border border-white h-[262px] bg-white"></div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

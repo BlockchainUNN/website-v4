@@ -2,6 +2,7 @@ import { YoutubeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaYoutubeSquare } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const journeyImages = [
   {
@@ -39,13 +40,25 @@ const journeyImages = [
 export default function OurJourneySoFar() {
   return (
     <section className="w-full min-h-screen h-fit bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center">
-      <div className="w-full flex items-center justify-center py-10">
+      <motion.div
+        className="w-full flex items-center justify-center py-10"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h3 className="bg-gradient-to-r uppercase tracking-0 from-[#02270C] to-[#011607] bg-clip-text text-transparent lg:text-6xl text-4xl font-extrabold">
           Our Journey So Far
         </h3>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-rows-3 md:grid-cols-6 w-full lg:max-h-[calc(100vh-100px)]">
+      <motion.div
+        className="grid grid-cols-1 md:grid-rows-3 md:grid-cols-6 w-full lg:max-h-[calc(100vh-100px)]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+      >
         {journeyImages.map((image, index) => (
           <div
             key={index}
@@ -79,7 +92,7 @@ export default function OurJourneySoFar() {
             />
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
