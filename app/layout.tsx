@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Raleway, JetBrains_Mono } from "next/font/google";
+import {
+  Inter,
+  Raleway,
+  JetBrains_Mono,
+  Hanken_Grotesk,
+} from "next/font/google";
+import localFont from "next/font/local";
+
 import { ErrorBoundary } from "@/components/layout/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +23,20 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
+});
+
+// Import a local font in your Next JS project
+
+const myFont = localFont({
+  src: "../public/assets/fonts/digital_7/digital_7_mono.ttf",
+  weight: "400",
+  style: "normal",
+  variable: "--font-digital-7",
+});
+
 export const metadata: Metadata = {
   title: "BlockchainUNN - University of Nigeria Blockchain Community",
   description:
@@ -23,11 +44,12 @@ export const metadata: Metadata = {
   keywords:
     "blockchain, cryptocurrency, UNN, university, Nigeria, community, education, web3",
   authors: [{ name: "BlockchainUNN Team" }],
-  openGraph: {
-    title: "BlockchainUNN - University of Nigeria Blockchain Community",
-    description: "Leading blockchain community at the University of Nigeria",
-    images: ["/images/og-image.png"],
-  },
+  // commented out because it was throwing a warning
+  // openGraph: {
+  //   title: "BlockchainUNN - University of Nigeria Blockchain Community",
+  //   description: "Leading blockchain community at the University of Nigeria",
+  //   images: ["/images/og-image.png"],
+  // },
   twitter: {
     card: "summary_large_image",
     title: "BlockchainUNN",
@@ -41,12 +63,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${raleway.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${raleway.variable} ${jetbrainsMono.variable} ${hanken.variable} ${myFont.variable}`}
+    >
       <body className={`${inter.className} antialiased`}>
         <Providers>
           <ErrorBoundary>
-            <div className="flex flex-col items-center min-h-screen">
-              <div className="w-full max-w-screen-2xl">{children}</div>
+            <div className="min-h-screen">
+              <div className="w-full">{children}</div>
             </div>
             <ToastContainer
               position="top-right"

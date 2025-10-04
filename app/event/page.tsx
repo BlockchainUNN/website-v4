@@ -1,42 +1,43 @@
 "use client";
 
-import { BlockathonHero } from "@/components/event/BlockathonHero";
-import { BlockathonSchedule } from "@/components/event/BlockathonSchedule";
-import { BlockathonSpeakers } from "@/components/event/BlockathonSpeakers";
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/NavBar";
+import { BuildathonStats } from "@/components/event/sections/stats";
+import { BlockathonSpeakers } from "@/components/event/sections/speakers";
+import BuildathonHero from "@/components/event/sections/hero";
+import EventHeader from "@/components/event/event-header";
+import BuildathonOverview from "@/components/event/sections/overview";
+import OurJourneySoFar from "@/components/event/sections/OurJourneySoFar";
+import BuildathonSponsors from "@/components/event/sections/sponsors";
+import BuildathonCountdown from "@/components/event/sections/countdown";
+import BuildathonCTA from "@/components/event/sections/cta";
 
 export default function BlockathonEventPage() {
   return (
-    <div className="w-full flex flex-col items-center">
-      {/* Navigation */}
-      <div className="flex w-full px-4 py-14 max-sm:py-8 max-sm-420:pb-4 justify-center">
-        <Navbar />
-      </div>
+    <div className="w-full" style={{ fontFamily: "var(--font-hanken)" }}>
+      <EventHeader />
 
       {/* Hero Section */}
-      <BlockathonHero />
+      <BuildathonHero />
+
+      {/* Stats Section */}
+      <BuildathonStats />
+
+      {/* Categories Section */}
+      <BuildathonOverview />
 
       {/* Speakers Section */}
       <BlockathonSpeakers />
 
-      {/* Schedule Section */}
-      <BlockathonSchedule />
-
-      {/* Categories Section */}
-      {/* <BlockathonCategories /> */}
+      {/* Past Wins Section */}
+      <OurJourneySoFar />
 
       {/* Prizes Section */}
-      {/* <BlockathonPrizes /> */}
+      <BuildathonSponsors />
 
-      {/* Past Wins Section */}
-      {/* <BlockathonPastWins /> */}
+      {/* Countdown Section */}
+      <BuildathonCountdown />
 
-      {/* Gallery Section */}
-      {/* <BlockathonGallery /> */}
-
-      {/* Footer */}
-      <Footer />
+      {/* CTA Section */}
+      <BuildathonCTA />
     </div>
   );
 }
