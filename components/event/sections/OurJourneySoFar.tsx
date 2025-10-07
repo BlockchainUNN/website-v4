@@ -1,7 +1,7 @@
-import { YoutubeIcon } from "lucide-react";
+// import { YoutubeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaYoutubeSquare } from "react-icons/fa";
+// import { FaYoutubeSquare } from "react-icons/fa";
 import { motion } from "motion/react";
 
 const journeyImages = [

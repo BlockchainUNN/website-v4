@@ -10,12 +10,10 @@ import { FormInput } from "@/components/ui/form-components";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Text } from "@/components/common/Text";
-import { useHackerLogin } from "@/hooks/crud/useHacker";
 import { hackerLoginSchema } from "@/lib/validation";
 
 export default function HackathonLoginPage() {
-  const router = useRouter();
-  const loginMutation = useHackerLogin();
+  // const router = useRouter();
 
   const initialValues = {
     email: "",
@@ -24,10 +22,10 @@ export default function HackathonLoginPage() {
 
   const handleSubmit = async (values: any) => {
     try {
-      await loginMutation.mutateAsync({
-        hackathonId: "hackathon-2024", // This should come from your state/config
-        data: values,
-      });
+      // await loginMutation.mutateAsync({
+      //   hackathonId: "hackathon-2024", // This should come from your state/config
+      //   data: values,
+      // });
       // Navigation is handled in the mutation success callback
     } catch (error) {
       console.error("Login failed:", error);
