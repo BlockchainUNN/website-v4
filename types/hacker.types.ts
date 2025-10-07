@@ -1,11 +1,15 @@
-export interface HackerRegistrationRequest {
+export type HackathonRegistrationForm = {
   email: string;
-  firstName: string;
-  lastName: string;
-  gender: "male" | "female" | "other";
-  phoneNumber: string;
-  telegramUsername?: string;
-}
+  role:
+    | "frontend-developer"
+    | "backend-developer"
+    | "smart-contract-developer"
+    | "designer"
+    | "product-manager"
+    | "others";
+  password: string;
+  confirmPassword: string;
+};
 
 export interface HackerLoginRequest {
   email: string;

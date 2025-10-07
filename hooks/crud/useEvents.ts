@@ -1,29 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { registerForBlockathon2025 } from "@/actions/events";
+import { QUERY_KEYS } from "@/lib/queryKey";
+import { RegistrationPayload } from "@/types/event.type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import useCustomQuery from "../custom/useCustomQuery";
-import {
-  registerForEvent,
-  getAttendeeCount,
-  getAttendeeByEmail,
-} from "@/actions/events";
-import { QUERY_KEYS } from "@/lib/queryKey";
-import { EventRegistrationRequest } from "@/types/event.type";
 
 // Mutation for event registration
-export const useEventRegistration = () => {
+export const useBlockathon2025Registration = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({
-      eventId,
-      data,
-    }: {
-      eventId: string;
-      data: EventRegistrationRequest;
-    }) => {
-      return registerForEvent(eventId, data);
+    mutationFn: ({ data }: { data: RegistrationPayload }) => {
+      return registerForBlockathon2025(data);
     },
     onSuccess: (data) => {
       if (!data.success) {
@@ -46,27 +36,5 @@ export const useEventRegistration = () => {
       console.error(error);
       toast.error(error.message || "Registration failed");
     },
-  });
-};
-
-// Query for attendee count
-export const useAttendeeCount = (eventId: string) => {
-  return useCustomQuery({
-    queryKey: QUERY_KEYS.getAttendeeCount({ eventId }),
-    queryFn: () => getAttendeeCount(eventId),
-    enabled: !!eventId,
-  });
-};
-
-// Query for checking attendee by email
-export const useAttendeeByEmail = (
-  eventId: string,
-  email: string,
-  enabled: boolean = false
-) => {
-  return useCustomQuery({
-    queryKey: QUERY_KEYS.getEventAttendees({ eventId, email }),
-    queryFn: () => getAttendeeByEmail(eventId, email),
-    enabled: enabled && !!eventId && !!email,
   });
 };

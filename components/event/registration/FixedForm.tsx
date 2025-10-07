@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +15,9 @@ import {
 } from "lucide-react";
 import StackGridButton from "../stack-grid-button";
 import { BsBalloon, BsEmojiSmile } from "react-icons/bs";
+import { useBlockathon2025Registration } from "@/hooks/crud/useEvents";
+import { RegistrationPayload } from "@/types/event.type";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "Enter your first name"),
@@ -49,7 +51,9 @@ export default function FixedRegistrationForm({
 }: {
   className?: string;
 }) {
-  const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
+  const { mutate: registerForEvent, isPending } =
+    useBlockathon2025Registration();
 
   const {
     register,
@@ -72,12 +76,30 @@ export default function FixedRegistrationForm({
   });
 
   const onSubmit = async (data: FormValues) => {
-    setSubmitting(true);
-    // Dummy submit function to simulate API
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log("Submitted registration:", data);
-    setSubmitting(false);
-    reset();
+    const payload: RegistrationPayload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phoneNumber: data.phone,
+      gender: data.gender,
+      student: data.isStudent,
+      techCareer: data.skill,
+      experienceLevel: data.experience,
+      attendingFrom: "", // Add appropriate value or field
+      willParticipateInHackathon: "", // Add appropriate value or field
+    };
+
+    registerForEvent(
+      { data: payload },
+      {
+        onSuccess: () => {
+          reset();
+          setTimeout(() => {
+            router.push("/event");
+          }, 2000);
+        },
+      }
+    );
   };
 
   return (
@@ -288,7 +310,7 @@ export default function FixedRegistrationForm({
 
               <div className="flex justify-center mt-6">
                 <StackGridButton
-                  text="Register Now"
+                  text={isPending ? "Registering..." : "Register Now"}
                   variant="button"
                   shape="rounded"
                   size="large"
@@ -296,6 +318,7 @@ export default function FixedRegistrationForm({
                   borderColor="#024539"
                   shadowColor="#024539"
                   shadowOffset={{ x: -3, y: 4 }}
+                  disabled={isPending}
                   hasArrow
                   arrowIcon={<ArrowRight className="text-[#024539]" />}
                 />

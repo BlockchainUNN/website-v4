@@ -1,16 +1,14 @@
-export interface EventRegistrationRequest {
+export interface RegistrationPayload {
   email: string;
-  firstName: string;
+  gender: string;
+  student: string;
   lastName: string;
+  firstName: string;
+  techCareer: string;
   phoneNumber: string;
-  gender: "male" | "female" | "other";
-  level: string;
-  department: string;
-  whatsappNumber: string;
-  telegramUsername?: string;
-  portfolio?: string;
-  experience: "beginner" | "intermediate" | "advanced";
-  reasons: string;
+  attendingFrom: string;
+  experienceLevel: string;
+  willParticipateInHackathon: string;
 }
 
 export interface EventAttendee {
