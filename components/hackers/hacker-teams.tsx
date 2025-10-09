@@ -1,5 +1,5 @@
 
-import { motion } from "motion/react";
+
 import Image from "next/image";
 import StackGridButton from "@/components/event/stack-grid-button";
 import { UserPlus2Icon, UsersRoundIcon } from "lucide-react";
@@ -8,8 +8,6 @@ import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useBlockathon2025Registration } from "@/hooks/crud/useEvents";
 
 const formSchema = z.object({
     teamName: z.string().min(2, "Enter your team name"),
@@ -18,10 +16,6 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 export default function HackerTeam() {
     const [activeTab, setActiveTab] = useState<"join" | "create">("create")
-    const router = useRouter();
-    const { mutate: registerForEvent, isPending } =
-        useBlockathon2025Registration();
-
     const {
         register,
         handleSubmit,
@@ -44,6 +38,9 @@ export default function HackerTeam() {
         } else {
             // join team
         }
+        console.log(payload)
+        reset()
+
         //   registerForEvent(
         //     { data: payload },
         //     {

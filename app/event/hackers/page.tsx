@@ -7,7 +7,7 @@ import HackerSchedule from "@/components/hackers/schedule";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react"
-import { MdHome, MdPeople, MdEditCalendar, MdSettings, MdEditDocument } from "react-icons/md"
+import { MdHome, MdPeople, MdEditCalendar, MdSettings } from "react-icons/md"
 
 const tabItems = [
     { name: "Home", icon: MdHome },
@@ -24,7 +24,7 @@ const displayedContent = {
 export default function Hackers() {
     type TabName = typeof tabItems[number]["name"];
     const [activeTab, setActiveTab] = useState<TabName>("Home");
-    const [user, setUser] = useState<{ name: string, date: string } | null>({ name: "Isaac", date: "17th of September, 2025" })
+    const [user,] = useState<{ name: string, date: string } | null>({ name: "Isaac", date: "17th of September, 2025" })
 
     if(!user) return <div>No user</div>
     return <div style={{ backgroundImage: "url(/assets/events/stats_bg.jpg)", fontFamily: "var(--font-hanken)" }} className="relative w-full h-screen bg-cover bg-center flex items-start justify-center pt-20  lg:p-20">

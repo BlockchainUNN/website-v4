@@ -36,8 +36,8 @@ export default function HackerProjects() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    getValues,
+    // setValue,
+    // getValues,
     reset,
   } = useForm({
     resolver: zodResolver(projectSchema),
@@ -54,9 +54,8 @@ export default function HackerProjects() {
     mode: "onBlur",
   });
 
-  
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleFinalSubmit = (data: any) => {
-    // eslint-disable-next-line no-console
     console.log("Submitted project:", data);
     reset();
     setStep(1);

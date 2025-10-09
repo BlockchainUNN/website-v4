@@ -1,6 +1,5 @@
 
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
 import Image from "next/image";
 
 const journeyImages = [
