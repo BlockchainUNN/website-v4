@@ -25,7 +25,7 @@ const journeyImages = [
   ];
 export default function HackerHome() {
     return <div className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full min-h-[400px] max-h-[60vh] pt-16 space-y-12" style={{height: "auto"}}>
-            <section className="w-1/3 mx-auto flex items-center justify-center gap-3">
+            <section className="w-1/2 lg:w-1/3 mx-auto flex items-center justify-center gap-5 lg:gap-3">
                 <div className="w-full md:max-w-md">
                     <Image
                         src="/assets/events/buildathon.png"
@@ -36,7 +36,7 @@ export default function HackerHome() {
                     />
                 </div>
                 <p
-                  className="text-7xl text-[#008b37] font-extrabold relative inline-block"
+                  className="text-4xl lg:text-7xl text-[#008b37] font-extrabold relative inline-block"
                   style={{
                     textShadow:
                       "-4px 4px 0 #014736, -8px 8px 0 #014736, 0px 2px 12px rgba(0,0,0,0.25)",
@@ -49,7 +49,7 @@ export default function HackerHome() {
         {journeyImages.map((item, index) => (
           <div
             key={index}
-            className={`${item.gridSpan} p-3 text-center relative w-full h-[18vh] border-2 border-black border-collapse flex items-center justify-center text-3xl group overflow-hidden`}
+            className={`${item.gridSpan} p-3 text-center relative w-full h-[18vh] border-2 border-black border-collapse flex items-center justify-center text-xl lg:text-3xl group overflow-hidden`}
           >
         {item.text}
           </div>

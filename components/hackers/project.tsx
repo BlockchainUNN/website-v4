@@ -207,7 +207,7 @@ export default function HackerProjects() {
 
   return (
     <div className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full h-full pt-16 space-y-12 ">
-      <section className="w-1/3 mx-auto flex items-center justify-center gap-5">
+      <section className="w-1/2 mx-auto flex items-center justify-center gap-5">
         <div className="w-full md:max-w-md">
           <Image
             src="/assets/events/buildathon.png"
@@ -218,7 +218,7 @@ export default function HackerProjects() {
           />
         </div>
         <p
-          className="text-5xl md:text-6xl text-[#008b37] font-extrabold relative inline-block"
+          className="text-3xl lg:text-5xl md:text-6xl text-[#008b37] font-extrabold relative inline-block"
           style={{
             textShadow:
               "-4px 4px 0 #014736, -8px 8px 0 #014736, 0px 2px 12px rgba(0,0,0,0.25)",
@@ -228,7 +228,7 @@ export default function HackerProjects() {
         </p>
       </section>
       <section className="w-full flex justify-center">
-        <div className="w-10/12 bg-white h-[40vh] shadow-lg p-8 border-3 border-black text-black">
+        <div className="w-10/12 bg-white h-[43vh] lg:h-[40vh] shadow-lg p-8 border-3 border-black text-black">
             <form
               onSubmit={handleSubmit(handleFinalSubmit)}
               className="space-y-10"

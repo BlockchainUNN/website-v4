@@ -66,7 +66,7 @@ export default function HackerSchedule() {
       className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full min-h-[400px] max-h-[60vh] pt-16 space-y-12"
       style={{ height: "auto" }}
     >
-      <section className="w-2/5 mx-auto flex items-center justify-center gap-3">
+      <section className="w-3/5 mx-auto flex items-center justify-center gap-3">
         <div className="w-full md:max-w-md">
           <Image
             src="/assets/events/buildathon.png"
@@ -77,7 +77,7 @@ export default function HackerSchedule() {
           />
         </div>
         <p
-          className="text-6xl text-[#008b37] font-extrabold relative inline-block"
+          className="text-4xl lg:text-6xl text-[#008b37] font-extrabold relative inline-block"
           style={{
             textShadow:
               "-4px 4px 0 #014736, -8px 8px 0 #014736, 0px 2px 12px rgba(0,0,0,0.25)",
@@ -94,13 +94,13 @@ export default function HackerSchedule() {
           >
             <span
               className={cn(
-                "border-3 border-black w-3/4 h-10 absolute top-3 text-2xl text-center bg-[#00cd51] flex items-center justify-center rounded left-1/2 -translate-x-1/2"
+                "border-3 border-black w-3/4 h-10 absolute top-3 text-lg lg:text-2xl text-center bg-[#00cd51] flex items-center justify-center rounded left-1/2 -translate-x-1/2"
                
               )}
             >
               DAY {index + 1}: {item.date.toUpperCase()}
             </span>
-            <div className="w-full flex flex-col items-center justify-center text-2xl mt-8 p-3">
+            <div className="w-full flex flex-col items-center justify-center text-xl lg:text-2xl mt-8 p-3">
               {item.text}
             </div>
           </div>
