@@ -290,8 +290,10 @@ import React from "react";
 import StackGridButton from "../stack-grid-button";
 import { stats } from "./stats";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 export default function BuildathonHero() {
+const router = useRouter();
   return (
     <section className="w-full h-auto pt-36 lg:pt-64 bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center relative">
       <motion.div
@@ -339,6 +341,7 @@ export default function BuildathonHero() {
               size="large"
               shadowOffset={{ x: -3, y: 4 }}
               hasArrow
+onClick={()=>router.push("/event/registration")}
             />
           </div>
           <div className="w-full md:w-1/2">
