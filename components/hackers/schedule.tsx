@@ -6,66 +6,48 @@ const journeyImages = [
   {
     text: (
       <>
-        Online Hackathon officially starts with workshops from sponsors.
+        Virtual hackathon with online ideation, workshops, and mentorship to build early-stage projects.
       </>
     ),
-    date: "Mon, 28th Oct, 2024",
-    gridSpan: "md:col-span-3 bg-[#C89A04]",
+    date: "19th Oct – 2nd Nov 2025",
+    gridSpan: "md:col-span-6 bg-[#51604D]",
   },
   {
     text: (
       <>
-        Online Hackathon day(2) continues with the hackers and their teams.
+        Physical workshops at the University of Nigeria, Nsukka, featuring hands-on training for all participants.
       </>
     ),
-    date: "Tue, 29th Oct, 2024",
-    gridSpan: "md:col-span-3 bg-[#51604D]",
+    date: "3rd – 6th Nov 2025",
+    gridSpan: "md:col-span-6 bg-[#C89A04]",
   },
   {
     text: (
       <>
-        Admissions to all registered participants to the hacker house for the physical phase.
+        Judges’ review and top projects gets to pitch.
       </>
     ),
-    date: "Wed, 30th Oct, 2024",
+    date: "7th Nov 2025",
     gridSpan: "md:col-span-3 bg-[#024539]",
   },
   {
     text: (
       <>
-        Physical hackathon day(2) continues with hackers rounding up.
+        Conference Day and Hackathon Winners Announcement.
       </>
     ),
-    date: "Thu, 31st Oct, 2024",
-    gridSpan: "md:col-span-3 bg-[#C89A04]",
-  },
-  {
-    text: (
-      <>
-        Judges will review and judge, and the top 10 projects get to do a physical presentation.
-      </>
-    ),
-    date: "Fri, 1st Nov, 2024",
+    date: "8th Nov 2025",
     gridSpan: "md:col-span-3 bg-[#51604D]",
-  },
-  {
-    text: (
-      <>
-        Conference 4.0 grand finale event for all techies. (Newbies, Designers, Developers, Content writers, etc.)
-      </>
-    ),
-    date: "Sat, 2nd Nov, 2024",
-    gridSpan: "md:col-span-3 bg-[#024539]",
   },
 ]
 
 export default function HackerSchedule() {
   return (
     <div
-      className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full min-h-[400px] max-h-[60vh] pt-16 space-y-12"
-      style={{ height: "auto" }}
+      className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full lg:w-[65vw] h-full pt-16 space-y-12"
+ 
     >
-      <section className="w-3/5 mx-auto flex items-center justify-center gap-3">
+      <section className="w-3/5 lg:w-2/5 mx-auto flex items-center justify-center gap-3">
         <div className="w-full md:max-w-md">
           <Image
             src="/assets/events/buildathon.png"
@@ -76,7 +58,7 @@ export default function HackerSchedule() {
           />
         </div>
         <p
-          className="text-4xl lg:text-6xl text-[#008b37] font-extrabold relative inline-block"
+          className="text-3xl lg:text-6xl text-[#008b37] font-extrabold relative inline-block"
           style={{
             textShadow:
               "-4px 4px 0 #014736, -8px 8px 0 #014736, 0px 2px 12px rgba(0,0,0,0.25)",
@@ -97,7 +79,7 @@ export default function HackerSchedule() {
                
               )}
             >
-              DAY {index + 1}: {item.date.toUpperCase()}
+             {item.date.toUpperCase()}
             </span>
             <div className="w-full flex flex-col items-center justify-center text-xl lg:text-2xl mt-8 p-3">
               {item.text}

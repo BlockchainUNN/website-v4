@@ -6,6 +6,7 @@ import HackerProjects from "@/components/hackers/project";
 import HackerSchedule from "@/components/hackers/schedule";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 import { MdHome, MdPeople, MdEditCalendar, MdSettings } from "react-icons/md"
 
@@ -23,6 +24,7 @@ const displayedContent = {
 }
 export default function Hackers() {
     type TabName = typeof tabItems[number]["name"];
+    const router = useRouter()
     const [activeTab, setActiveTab] = useState<TabName>("Home");
     const [user,] = useState<{ name: string, date: string } | null>({ name: "Isaac", date: "17th of September, 2025" })
 
@@ -53,6 +55,7 @@ export default function Hackers() {
                         shadowOffset={{ x: -3, y: 4 }}
                         hasArrow
                         arrowIcon={<ArrowLeft />}
+                        onClick={() => router.back()}
                     />
                 </div>
             </div>
@@ -83,7 +86,7 @@ export default function Hackers() {
                         );
                     })}
                 </div>
-                <div className="bg-white/50 h-11/12 lg:w-11/12">
+                <div className="bg-white/50 h-11/12 lg:w-11/12 mx-auto flex justify-center items-center">
                     {displayedContent[activeTab as keyof typeof displayedContent]}
                 </div>
             </section>

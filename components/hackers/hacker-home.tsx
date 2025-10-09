@@ -23,7 +23,7 @@ const journeyImages = [
     },
   ];
 export default function HackerHome() {
-    return <div className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full min-h-[400px] max-h-[60vh] pt-16 space-y-12" style={{height: "auto"}}>
+    return <div className="bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center w-full md:w-[65vw] h-full pt-16 space-y-12">
             <section className="w-1/2 lg:w-1/3 mx-auto flex items-center justify-center gap-5 lg:gap-3">
                 <div className="w-full md:max-w-md">
                     <Image
