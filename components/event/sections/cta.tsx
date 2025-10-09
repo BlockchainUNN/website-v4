@@ -5,6 +5,7 @@ import { LuLinkedin } from "react-icons/lu";
 import { FaInstagram, FaTelegram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 const socialLinks = [
   {
@@ -52,6 +53,7 @@ const aboutLinks = [
 ];
 
 export default function BuildathonCTA() {
+const router = useRouter();
   return (
     <section
       className="w-full min-h-screen h-auto bg-[#8D2BDC]"
@@ -93,6 +95,7 @@ export default function BuildathonCTA() {
                 size="large"
                 shadowOffset={{ x: -3, y: 4 }}
                 hasArrow
+          onClick={() => router.push("/event/registration")}
               />
             </div>
             <div className="w-full">
