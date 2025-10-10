@@ -50,6 +50,29 @@ export const metadata: Metadata = {
   //   description: "Leading blockchain community at the University of Nigeria",
   //   images: ["/images/og-image.png"],
   // },
+  metadataBase: new URL("https://blockchainunn.org"),
+  openGraph: {
+    title: "BlockchainUNN - University of Nigeria Blockchain Community",
+    description: "Leading blockchain community at the University of Nigeria",
+    url: "https://blockchainunn.org",
+    siteName: "BlockchainUNN",
+    images: [
+      {
+        url: "/assets/blockchainunn-green.png", // Updated hero image for better preview
+        width: 1200,
+        height: 630,
+        alt: "BlockchainUNN Hero Image",
+      },
+      {
+        url: "/assets/blockchainunn-green.png", // Large logo (backup or branding image)
+        width: 1563,
+        height: 1563,
+        alt: "BlockchainUNN Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
   twitter: {
     card: "summary_large_image",
     title: "BlockchainUNN",

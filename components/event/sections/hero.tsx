@@ -293,7 +293,7 @@ import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 
 export default function BuildathonHero() {
-const router = useRouter();
+  const router = useRouter();
   return (
     <section className="w-full h-auto pt-36 lg:pt-64 bg-[url('/assets/events/hero_bg.jpg')] bg-cover bg-center overflow-hidden flex flex-col items-center justify-center relative">
       <motion.div
@@ -321,7 +321,7 @@ const router = useRouter();
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <h1 className="text-black text-center text-2xl md:text-4xl uppercase font-semibold tracking-[0.36rem]">
-            Blockchain Conference 4.0
+            BlockchainUNN Conference 4.0
           </h1>
         </motion.div>
 
@@ -341,7 +341,7 @@ const router = useRouter();
               size="large"
               shadowOffset={{ x: -3, y: 4 }}
               hasArrow
-onClick={()=>router.push("/event/registration")}
+              onClick={() => router.push("/event/registration")}
             />
           </div>
           <div className="w-full md:w-1/2">
@@ -353,6 +353,7 @@ onClick={()=>router.push("/event/registration")}
               borderColor="#024539"
               shadowOffset={{ x: -3, y: 4 }}
               hasArrow
+              onClick={() => router.push("/hackathon/registration")}
             />
           </div>
         </motion.div>

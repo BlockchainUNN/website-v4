@@ -53,7 +53,7 @@ const aboutLinks = [
 ];
 
 export default function BuildathonCTA() {
-const router = useRouter();
+  const router = useRouter();
   return (
     <section
       className="w-full min-h-screen h-auto bg-[#8D2BDC]"
@@ -95,7 +95,7 @@ const router = useRouter();
                 size="large"
                 shadowOffset={{ x: -3, y: 4 }}
                 hasArrow
-          onClick={() => router.push("/event/registration")}
+                onClick={() => router.push("/event/registration")}
               />
             </div>
             <div className="w-full">
@@ -107,6 +107,7 @@ const router = useRouter();
                 borderColor="#024539"
                 shadowOffset={{ x: -3, y: 4 }}
                 hasArrow
+                onClick={() => router.push("/hackathon/registration")}
               />
             </div>
           </motion.div>
