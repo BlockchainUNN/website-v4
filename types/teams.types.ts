@@ -1,45 +1,56 @@
-export interface TeamMember {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
-  phoneNumber: string;
-  telegramUsername?: string;
-  joinedAt: string;
+// src/types/teams.types.ts
+
+export interface CreateTeamForm {
+  name: string;
 }
 
-export interface Team {
-  id: string;
+export interface JoinTeamForm {
+  inviteCode: string;
+}
+
+export interface HackathonBasic {
+  id: number;
+  name: string;
+  unique_name: string;
+}
+
+export interface TeamBasic {
+  id: number;
   name: string;
   inviteCode: string;
-  hackathonId: string;
-  leaderId: string;
-  members: TeamMember[];
-  maxMembers: number;
+  memberCount: number;
   createdAt: string;
-  updatedAt: string;
 }
 
-export interface TeamCreateRequest {
+export interface HackerTeamInfo {
+  role: string;
+  registeredAt: string;
+  hackathon: HackathonBasic;
+  team: TeamBasic;
+}
+
+export interface TeamMember {
+  role: string;
+  registeredAt: string;
+  isCreator: boolean;
+  user: {
+    uid: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    subCommunity: string[];
+    techSkills: string[];
+    phoneNumber: string | null;
+    gender: string | null;
+  };
+}
+
+export interface TeamDetails {
+  id: number;
   name: string;
-}
-
-export interface TeamJoinRequest {
   inviteCode: string;
-}
-
-export interface ProjectSubmission {
-  id: string;
-  teamId: string;
-  projectName: string;
-  description: string;
-  category: string;
-  githubRepo: string;
-  liveDemo?: string;
-  videoDemo?: string;
-  technologies: string[];
-  teamContribution: string;
-  submittedAt: string;
-  submittedBy: string;
+  memberCount: number;
+  createdAt: string;
+  hackathon: HackathonBasic;
+  members: TeamMember[];
 }

@@ -20,14 +20,14 @@ export const API_ROUTES = {
   hackers: {
     create: (id: string) => `hackers/${id}/`,
     get: "hackers/",
-    login: "hackers/login/",
+    login: (id: string) => `hackers/login/${id}`,
     count: "/hackers/count/",
   },
   teams: {
-    create: "/hackathon/team/",
-    get: "/hackathon/team/",
-    leave: "/hackathon/team/",
-    join: "/hackathon/team/join/",
+    create: (id: string) => `hackathon/team/${id}`,
+    join: (id: string) => `hackathon/team/join/${id}`,
+    get: (id: string) => `hackathon/team/${id}`,
+    leave: (id: string) => `hackathon/team/${id}`,
   },
   users: {
     getByEmail: "users/",

@@ -1,59 +1,80 @@
-"use client";
+// Updated src/store/useHackathonState.ts (add updateUser)
 
+import { TeamDetails } from "@/types/teams.types";
 import { create } from "zustand";
-import { Hacker } from "@/types/hacker.types";
+import { persist } from "zustand/middleware";
 
-interface HackathonState {
-  // Event IDs
-  blockathonId: string;
-  hackathonId: string;
-  setEventIds: (blockathonId: string, hackathonId: string) => void;
-
-  // Current hacker
-  currentHacker: Hacker | null;
-  setCurrentHacker: (hacker: Hacker | null) => void;
-
-  // Team state
-  hasTeam: boolean;
-  teamId: string | null;
-  setTeamState: (hasTeam: boolean, teamId?: string | null) => void;
-
-  // UI state
-  isLoading: boolean;
-  setLoading: (loading: boolean) => void;
-
-  // Reset all state
-  reset: () => void;
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  uid: string;
+  role: string;
+  registeredAt: string;
+  team: null | TeamDetails; // Adjust type as needed based on potential team structure
 }
 
-export const useHackathonState = create<HackathonState>((set) => ({
-  // Event IDs
-  blockathonId: "",
-  hackathonId: "",
-  setEventIds: (blockathonId, hackathonId) =>
-    set({ blockathonId, hackathonId }),
+interface AuthState {
+  accessToken: string | null;
+  refreshToken: string | null;
+  user: User | null;
+  setTime: number | null;
+  setAuth: (
+    tokens: { accessToken: string; refreshToken: string },
+    user: User
+  ) => void;
+  logout: () => void;
+  getAccessToken: () => string | null;
+  getUser: () => User | null;
+  updateUser: (updates: Partial<User>) => void;
+}
 
-  // Current hacker
-  currentHacker: null,
-  setCurrentHacker: (hacker) => set({ currentHacker: hacker }),
-
-  // Team state
-  hasTeam: false,
-  teamId: null,
-  setTeamState: (hasTeam, teamId = null) => set({ hasTeam, teamId }),
-
-  // UI state
-  isLoading: false,
-  setLoading: (loading) => set({ isLoading: loading }),
-
-  // Reset all state
-  reset: () =>
-    set({
-      blockathonId: "",
-      hackathonId: "",
-      currentHacker: null,
-      hasTeam: false,
-      teamId: null,
-      isLoading: false,
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set, get) => ({
+      accessToken: null,
+      refreshToken: null,
+      user: null,
+      setTime: null,
+      setAuth: (tokens, user) =>
+        set({
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+          user,
+          setTime: Date.now(),
+        }),
+      logout: () =>
+        set({
+          accessToken: null,
+          refreshToken: null,
+          user: null,
+          setTime: null,
+        }),
+      getAccessToken: () => {
+        const { accessToken, setTime, logout } = get();
+        if (!accessToken || !setTime) {
+          return null;
+        }
+        if (Date.now() - setTime > 24 * 60 * 60 * 1000) {
+          logout();
+          return null;
+        }
+        return accessToken;
+      },
+      getUser: () => {
+        const { user, getAccessToken } = get();
+        if (getAccessToken() === null) {
+          return null;
+        }
+        return user;
+      },
+      updateUser: (updates: Partial<User>) =>
+        set((state) => ({
+          user: state.user ? { ...state.user, ...updates } : null,
+        })),
     }),
-}));
+    {
+      name: "auth-storage",
+    }
+  )
+);

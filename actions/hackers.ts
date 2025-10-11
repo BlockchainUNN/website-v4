@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { api, API_ROUTES } from "@/lib/api";
 import handleError, { handleSuccess } from "@/lib/handleResponse";
-import { HackathonRegistrationForm } from "@/types/hacker.types";
+import {
+  HackathonRegistrationForm,
+  HackerLoginRequest,
+} from "@/types/hacker.types";
 
 export const registerForBlockathon2025Hack = async (
   payload: HackathonRegistrationForm
@@ -15,6 +18,20 @@ export const registerForBlockathon2025Hack = async (
       data,
       "You have successfully registered for the Blockathon 2025 Hackathon!"
     );
+  } catch (error: any) {
+    return handleError(error);
+  }
+};
+
+export const loginToBlockathon2025Hack = async (
+  payload: HackerLoginRequest
+) => {
+  try {
+    const { data } = await api.post(API_ROUTES.hackers.login("2"), {
+      ...payload,
+    });
+
+    return handleSuccess(data, "Welcome back!!");
   } catch (error: any) {
     return handleError(error);
   }
