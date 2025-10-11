@@ -13,7 +13,7 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navItems = ["Home", "About", "Community", "Team", "Events"]; //"Blog"
+  const navItems = ["Home", "About", "Community", "Hackathon", "Events"]; //"Blog"
   const { isDarkMode } = useTheme();
   const theme = isDarkMode;
   const pathname = usePathname();
@@ -29,6 +29,9 @@ const Navbar = () => {
   const getNavItemLink = (item: string) => {
     if (item.toLowerCase() === "team") {
       return "/about#team";
+    }
+    if (item.toLowerCase() === "hackathon") {
+      return "/hackathon/login";
     } else if (item.toLowerCase() === "events") {
       return "/event";
     }

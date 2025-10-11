@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useHackathonRegistration } from "@/hooks/crud/useHacker";
 import { HackathonRegistrationForm } from "@/types/hacker.types";
 import StackGridButton from "../stack-grid-button";
+import Link from "next/link";
 
 const formSchema = z
   .object({
@@ -78,7 +79,7 @@ export default function FixedHackathonRegistrationForm({
         onSuccess: () => {
           reset();
           setTimeout(() => {
-            router.push("/event");
+            router.push("/hackathon/login");
           }, 3000);
         },
       }
@@ -211,6 +212,14 @@ export default function FixedHackathonRegistrationForm({
                 />
               </div>
             </form>
+          </div>
+          <div className="mx-auto w-full flex gap-1">
+            <span className="mx-auto text-center">
+              Already registered?{" "}
+              <Link href={"/hackathon/login"} className="underline">
+                Click Here
+              </Link>
+            </span>
           </div>
         </div>
 

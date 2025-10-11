@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTeamForm, JoinTeamForm } from "@/types/teams.types";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useCreateTeam, useJoinTeam } from "@/hooks/crud/useteams";
 
 const formSchema = z.object({
@@ -20,7 +20,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function HackerTeam() {
   const [activeTab, setActiveTab] = useState<"join" | "create">("create");
-  const router = useRouter();
+  //   const router = useRouter();
   const { mutate: createTeam, isPending: isCreating } = useCreateTeam();
   const { mutate: joinTeam, isPending: isJoining } = useJoinTeam();
 

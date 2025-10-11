@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useHackathonLogin } from "@/hooks/crud/useHacker";
 import StackGridButton from "../stack-grid-button";
 import { HackerLoginRequest } from "@/types/hacker.types";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -141,11 +142,19 @@ export default function FixedHackathonLoginForm({
               </div>
             </form>
           </div>
+          <div className="mx-auto w-full flex gap-1">
+            <span className="mx-auto text-center">
+              Have not registered yet?{" "}
+              <Link href={"/hackathon/registration"} className="underline">
+                Click Here
+              </Link>
+            </span>
+          </div>
         </div>
 
         {/* Graphic side */}
         <div className="relative p-4 row-span-2">
-          <div className="relative h-full w-full rounded-2xl overflow-hidden">
+          <div className="relative h-full w-full rounded-2xl overflow-hidden ">
             <div className="absolute w-full h-full inset-0 bg-black/50 z-50 flex items-center justify-center">
               <Image
                 src="/assets/events/buildathon.png"
