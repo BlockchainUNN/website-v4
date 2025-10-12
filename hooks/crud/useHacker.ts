@@ -13,10 +13,13 @@ import {
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useAuthStore } from "../store/useHackathonState";
+import { showHackathonSuccessAlert } from "@/lib/alert";
+import { useRouter } from "next/navigation";
 
 // Mutation for event registration
 export const useHackathonRegistration = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: ({ data }: { data: HackathonRegistrationForm }) => {
@@ -28,6 +31,11 @@ export const useHackathonRegistration = () => {
       }
 
       toast.success(data.message);
+      showHackathonSuccessAlert().then(() => {
+        setTimeout(() => {
+          router.push("/hackathon/login");
+        }, 3000);
+      });
 
       // Invalidate related queries
       queryClient.invalidateQueries({

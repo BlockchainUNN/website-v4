@@ -2,14 +2,17 @@
 "use client";
 
 import { registerForBlockathon2025 } from "@/actions/events";
+import { showSuccessAlert } from "@/lib/alert";
 import { QUERY_KEYS } from "@/lib/queryKey";
 import { RegistrationPayload } from "@/types/event.type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 // Mutation for event registration
 export const useBlockathon2025Registration = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: ({ data }: { data: RegistrationPayload }) => {
@@ -21,6 +24,11 @@ export const useBlockathon2025Registration = () => {
       }
 
       toast.success(data.message);
+      showSuccessAlert().then(() => {
+        setTimeout(() => {
+          router.push("/event");
+        }, 2000);
+      });
 
       // Invalidate related queries
       queryClient.invalidateQueries({

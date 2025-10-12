@@ -17,8 +17,6 @@ import StackGridButton from "../stack-grid-button";
 import { BsBalloon, BsEmojiSmile } from "react-icons/bs";
 import { useBlockathon2025Registration } from "@/hooks/crud/useEvents";
 import { RegistrationPayload } from "@/types/event.type";
-import { useRouter } from "next/navigation";
-import { showSuccessAlert } from "@/lib/alert";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "Enter your first name"),
@@ -52,7 +50,6 @@ export default function FixedRegistrationForm({
 }: {
   className?: string;
 }) {
-  const router = useRouter();
   const { mutate: registerForEvent, isPending } =
     useBlockathon2025Registration();
 
@@ -95,10 +92,6 @@ export default function FixedRegistrationForm({
       {
         onSuccess: async () => {
           reset();
-          await showSuccessAlert();
-          setTimeout(() => {
-            router.push("/event");
-          }, 2000);
         },
       }
     );

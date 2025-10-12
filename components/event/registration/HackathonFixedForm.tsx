@@ -6,12 +6,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
 import { ArrowRight, BriefcaseBusiness, Mail, Lock } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { useHackathonRegistration } from "@/hooks/crud/useHacker";
 import { HackathonRegistrationForm } from "@/types/hacker.types";
 import StackGridButton from "../stack-grid-button";
 import Link from "next/link";
-import { showHackathonSuccessAlert } from "@/lib/alert";
 
 const formSchema = z
   .object({
@@ -46,7 +44,6 @@ export default function FixedHackathonRegistrationForm({
 }: {
   className?: string;
 }) {
-  const router = useRouter();
   const { mutate: registerForHackathon, isPending } =
     useHackathonRegistration();
 
@@ -79,10 +76,6 @@ export default function FixedHackathonRegistrationForm({
       {
         onSuccess: async () => {
           reset();
-          await showHackathonSuccessAlert();
-          setTimeout(() => {
-            router.push("/hackathon/login");
-          }, 3000);
         },
       }
     );
