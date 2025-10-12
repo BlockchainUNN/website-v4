@@ -41,7 +41,7 @@ const Footer = () => {
                         <Link to="">Team</Link>
                         <Link to="">Blog</Link> */}
             <Link href="/community">Community</Link>
-            <Link href="/event/hackathon">Hackathon Login</Link>
+            <Link href="/hackathon/login">Hackathon Login</Link>
           </ul>
         </div>
         <div className="text-start flex flex-col items-start px-4 md:px-2 py-[2rem] w-[45%] ">
@@ -82,7 +82,8 @@ const Footer = () => {
         } text-[10px] md:text-[16px]`}
       >
         <p className="mx-auto">
-          Copyright © 2024 BlockchainUNN. All rights reserved.
+          Copyright © {new Date().getFullYear()} BlockchainUNN. All rights
+          reserved.
         </p>
       </div>
     </div>

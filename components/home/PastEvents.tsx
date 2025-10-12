@@ -8,11 +8,18 @@ import space1 from "../../public/assets/events/spaces/1.jpg";
 import cartesievent from "../../public/assets/events/cartesievent.png";
 import avax_pizza from "../../public/assets/events/avax-pizza.png";
 import blockchainunn_ai from "../../public/assets/events/blockchainunn-ai.png";
+import blockathon from "../../public/assets/blockathon.png";
 import { useTheme } from "@/hooks/store/useTheme";
 import Image from "next/image";
 import Link from "next/link";
 
 const events = [
+  {
+    imageSrc: blockathon,
+    date: "1ST NOV, 2024",
+    title: "BLOCKATHON",
+    link: "https://x.com/BlockchainUNN/status/1853796820063023452",
+  },
   {
     imageSrc: space1,
     date: "16TH OCT, 2024",
@@ -65,7 +72,7 @@ const PastEvents = () => {
   const { imageSrc, date, title, link } = events[currentIndex];
 
   return (
-    <div className="w-[88%] flex flex-col gap-4 items-center justify-center my-12">
+    <div className="w-[88%] flex flex-col gap-4 items-center justify-center my-12 mx-auto">
       <div className="flex items-center justify-center gap-2 w-full">
         <Image
           width={500}

@@ -32,7 +32,11 @@ const Navbar = () => {
     }
     if (item.toLowerCase() === "hackathon") {
       return "/hackathon/login";
-    } else if (item.toLowerCase() === "events") {
+    }
+    if (item.toLowerCase() === "home") {
+      return "/";
+    }
+    if (item.toLowerCase() === "events") {
       return "/event";
     }
     return `/${item.toLowerCase()}`;
@@ -111,7 +115,7 @@ const Navbar = () => {
             to={"https://www.linkedin.com/company/blockchainunn/"}
             type={"linkedin"}
           />
-          <SocialLink to={""} type={"telegram"} />
+          <SocialLink to={"https://t.me/BlockchainUNN"} type={"telegram"} />
           <SocialLink to={"https://x.com/BlockchainUNN"} type={"x"} />
           <SocialLink
             to={"https://www.instagram.com/blockchainunn"}

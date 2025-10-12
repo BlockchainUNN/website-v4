@@ -50,7 +50,7 @@ export const commonContent = {
         icon: "FaInstagram",
       },
     ],
-    copyright: "© 2024 BlockchainUNN. All rights reserved.",
+    copyright: `© ${new Date().getFullYear()} BlockchainUNN. All rights reserved.`,
   },
 
   forms: {

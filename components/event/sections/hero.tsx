@@ -368,12 +368,12 @@ export default function BuildathonHero() {
       >
         <div className="py-2 md:py-4">
           <h3 className="uppercase text-white text-center text-base md:text-xl font-normal">
-            4th edition (2025) holds @ uba hall of fame, unn, nsukka
+            4th edition (2025) holds @ Ekpo Ref, unn, nsukka
           </h3>
         </div>
         <div>
           <h3 className="uppercase text-white text-center text-base md:text-4xl font-semibold">
-            28TH OCT. - 2ND NOV, 2025
+            8TH NOV, 2025
           </h3>
         </div>
       </motion.div>

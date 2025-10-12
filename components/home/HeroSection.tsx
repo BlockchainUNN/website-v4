@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import odoi from "../../public/assets/team-pics/odoi.png";
 import cheta from "../../public/assets/team-pics/cheta.png";
@@ -16,8 +17,10 @@ import Image from "next/image";
 import BlockathonHeader from "../layout/BlockathonHeader";
 import { useTheme } from "@/hooks/store/useTheme";
 import Navbar from "../layout/NavBar";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+  const router = useRouter();
   const { isDarkMode } = useTheme();
   const theme = isDarkMode;
   return (
@@ -130,11 +133,23 @@ const HeroSection = () => {
       </div>
 
       <div className="flex flex-col md:flex-row items-center gap-4 mb-12 md:mb-20">
-        <button className="bg-gradient-to-r from-[#02641c] to-[#04CA39] flex items-center justify-center gap-2 w-[200px] md:w-[180px] h-[55px] md:h-[65px]  rounded-full text-white">
+        <button
+          onClick={() => router.push("/event")}
+          className="bg-gradient-to-r from-[#02641c] to-[#04CA39] flex items-center justify-center gap-2 w-[200px] md:w-[180px] h-[55px] md:h-[65px]  rounded-full text-white"
+        >
           Get Started <FaArrowRight size={14} />
         </button>
         <div className="flex items-center bg-gradient-to-r from-[#02641c] to-[#04CA39] w-[150px] md:w-[180px] h-[55px] md:h-[65px]  rounded-full">
-          <button className="bg-white w-[95%] h-[90%] rounded-full text-green-800">
+          <button
+            onClick={() =>
+              window.open(
+                "https://blockchainunn.substack.com/",
+                "_blank",
+                "noopener,noreferrer"
+              )
+            }
+            className="bg-white w-[95%] h-[90%] rounded-full text-green-800"
+          >
             Newsletter
           </button>
         </div>
@@ -182,10 +197,10 @@ const HeroSection = () => {
               className="rounded-full border border-black w-[70px] h-[70px] absolute left-28 object-cover"
             />
             <div className="flex items-center justify-center rounded-full p-4  w-[70px] h-[70px] absolute left-[10.5rem] text-[12px] font-wallpoet bg-[#02641C] text-[#2CE85E]">
-              +4000K
+              +5000
             </div>
           </div>
-          <h2 className="text-[80px] md:text-[100px] font-bold mb-0">4000+</h2>
+          <h2 className="text-[80px] md:text-[100px] font-bold mb-0">5000+</h2>
           <p className="-mt-8 font-semibold">Active members</p>
         </div>
 

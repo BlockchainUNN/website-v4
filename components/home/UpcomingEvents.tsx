@@ -152,7 +152,6 @@
 import React, { useEffect, useState } from "react";
 import timer from "../../public/assets/icons/timer.svg";
 import timerwhite from "../../public/assets/icons/timer-white.svg";
-import blockathon from "../../public/assets/blockathon.png";
 import { useTheme } from "@/hooks/store/useTheme";
 import { calculateTimeLeft } from "@/lib/utils";
 import Image from "next/image";
@@ -160,7 +159,7 @@ import Image from "next/image";
 const UpcomingEvents = () => {
   const { isDarkMode } = useTheme();
   const theme = isDarkMode;
-  const [eventDate] = useState(new Date("2024-11-01T10:00:00"));
+  const [eventDate] = useState(new Date("2025-11-08T10:00:00"));
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(eventDate));
 
@@ -197,8 +196,9 @@ const UpcomingEvents = () => {
         <div className="w-full h-[200px] md:h-[620px] rounded-xl">
           <Image
             width={500}
-            src={blockathon}
-            alt="blockathon"
+            src={"/assets/buildathon_flier.jpg"}
+            alt="buildathon"
+            height={500}
             className="w-full h-full object-cover rounded-t-xl"
           />
         </div>
@@ -207,7 +207,7 @@ const UpcomingEvents = () => {
           <div className="text-center md:text-start">
             <p className="text-[16px] md:text-[20px]">Coming Soon</p>
             <h1 className="text-[20px] md:text-[35px] text-semibold">
-              BLOCKATHON
+              BUILDATHON
             </h1>
             <p className="font-mono text-[16px] md:text-[18px]">
               Conference / Hackathon

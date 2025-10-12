@@ -48,7 +48,7 @@ const aboutLinks = [
   },
   {
     label: "Buildathon Hackathon",
-    href: "/event/hackathon",
+    href: "/hackathon/login",
   },
 ];
 

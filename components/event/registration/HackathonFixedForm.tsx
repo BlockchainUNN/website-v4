@@ -11,6 +11,7 @@ import { useHackathonRegistration } from "@/hooks/crud/useHacker";
 import { HackathonRegistrationForm } from "@/types/hacker.types";
 import StackGridButton from "../stack-grid-button";
 import Link from "next/link";
+import { showHackathonSuccessAlert } from "@/lib/alert";
 
 const formSchema = z
   .object({
@@ -76,8 +77,9 @@ export default function FixedHackathonRegistrationForm({
     registerForHackathon(
       { data: payload },
       {
-        onSuccess: () => {
+        onSuccess: async () => {
           reset();
+          await showHackathonSuccessAlert();
           setTimeout(() => {
             router.push("/hackathon/login");
           }, 3000);

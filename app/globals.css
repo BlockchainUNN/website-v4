@@ -37,6 +37,64 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Custom Colors from Tailwind */
+  --color-blockchain-green: #02641c;
+  --color-blockathon-green: #2ce85e;
+  --color-blockchain-white: #cbd7ce;
+  --color-grey: #d8d8d8;
+  --color-white1: #ededed;
+  --color-black1: #0e0e0e;
+  --color-ash: #b2b2b2;
+  --color-grey-2: #898b8a;
+  --color-grey-3: #d9d9d9;
+
+  /* Custom Font Families */
+  --font-wallpoet: "Wallpoet", sans-serif;
+  --font-raleway: "Raleway", sans-serif;
+  --font-raleway-black: "Raleway-Black", sans-serif;
+  --font-raleway-medium: "Raleway-Medium", sans-serif;
+  --font-raleway-semibold: "Raleway-Semibold", sans-serif;
+  --font-inter-semibold: "Inter-Semibold", sans-serif;
+  --font-inter-extrabold: "Inter-Extrabold", sans-serif;
+
+  /* Custom Background Images (Gradients) */
+  --bg-dark-mode: linear-gradient(to bottom, #000000, #0e0e0e);
+  --bg-dark-mode-3: linear-gradient(to bottom, #000000 50%, #0e0e0e);
+  --bg-dark-mode-4: linear-gradient(to top, #000000 50%, #0e0e0e);
+  --bg-dark-mode-2: linear-gradient(to bottom, #000000, #1b1a1a);
+  --bg-footer-dark: linear-gradient(to right, #000000, #1e1e1e 100%);
+
+  /* Custom Border Image Gradient */
+  --border-image-custom-gradient: linear-gradient(
+    180deg,
+    #898b8a 0%,
+    #6fae80 33.75%,
+    #61f889 66.3%,
+    #afc8b5 100%
+  );
+
+  /* Custom Drop Shadow */
+  --drop-shadow-custom: -25px 12px 5px #02641c;
+
+  /* Custom Screen Breakpoint */
+  --breakpoint-sm-420: 420px;
+
+  /* Custom Keyframes for Scroll Animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Custom Animations */
+  --animation-scroll-right: scroll 20s linear infinite;
+  --animation-scroll-right1: scroll 5s linear infinite;
+
+  /* Radius Variables (unchanged) */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -123,4 +181,34 @@
 
 img {
   pointer-events: none;
+}
+
+@font-face {
+  font-family: "Raleway-Black";
+  src: url("/assets/fonts/raleway/Raleway-Black.ttf");
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("/assets/fonts/raleway/Raleway-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Raleway-Medium";
+  src: url("/assets/fonts/raleway/Raleway-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Raleway-Semibold";
+  src: url("/assets/fonts/raleway/Raleway-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Inter-Semibold";
+  src: url("/assets/fonts/inter/Inter-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Inter-Extrabold";
+  src: url("/assets/fonts/inter/Inter-ExtraBold.ttf");
 }
