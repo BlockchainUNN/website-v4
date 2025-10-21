@@ -31,7 +31,10 @@ export default function BuildathonSponsors() {
           {sponsorsData
             .filter((sponsor) => sponsor.tier === "SILVER")
             .map((sponsor) => (
-              <div className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group">
+              <div
+                key={sponsor.name}
+                className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+              >
                 <Link
                   href={sponsor.link}
                   target="_blank"
@@ -72,7 +75,10 @@ export default function BuildathonSponsors() {
           {sponsorsData
             .filter((sponsor) => sponsor.tier === "GOLD")
             .map((sponsor) => (
-              <div className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group">
+              <div
+                key={sponsor.name}
+                className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+              >
                 <Link
                   href={sponsor.link}
                   target="_blank"
