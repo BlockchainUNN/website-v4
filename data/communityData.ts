@@ -1,4 +1,5 @@
 import { SocialPlatform, CommunityEvent } from "@/types/community.types";
+import { Sponsor } from "@/types/sponsors.types";
 
 // Community member images for the gallery
 export const communityPics: string[] = [
@@ -108,5 +109,20 @@ export const recentEventsData: CommunityEvent[] = [
     flyer: "/images/events/cartesi.png",
     imageLinks: "",
     title: "Cartesi Event 2",
+  },
+];
+
+export const sponsorsData: Sponsor[] = [
+  {
+    name: "cKash",
+    imageUrl: "/assets/events/sponsors/ckash.png",
+    link: "https://ckash.app/",
+    tier: "SILVER",
+  },
+  {
+    name: "Celo",
+    imageUrl: "/assets/events/sponsors/celo.png",
+    link: "https://celo.org/",
+    tier: "GOLD",
   },
 ];
