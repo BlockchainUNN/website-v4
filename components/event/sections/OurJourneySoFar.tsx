@@ -47,7 +47,7 @@ export default function OurJourneySoFar() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h3 className="bg-gradient-to-r uppercase tracking-0 from-[#02270C] to-[#011607] bg-clip-text text-transparent lg:text-6xl text-4xl font-extrabold">
+        <h3 className="bg-linear-to-r uppercase tracking-0 from-[#02270C] to-[#011607] bg-clip-text text-transparent lg:text-6xl text-4xl font-extrabold">
           Our Journey So Far
         </h3>
       </motion.div>
@@ -66,7 +66,7 @@ export default function OurJourneySoFar() {
           >
             <Link
               href=""
-              className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform translate-y-full overflow-hidden"
+              className="absolute inset-0 bg-linear-to-b from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform translate-y-full overflow-hidden"
               style={{
                 transition: "all 0.25s cubic-bezier(.74,1,.48,.78)",
               }}
@@ -75,7 +75,7 @@ export default function OurJourneySoFar() {
                 <Image
                   src="/assets/events/video.svg"
                   alt="youtube"
-                  className="hover:sepia hover:saturate-[10000%] hover:hue-rotate-90 transition-all duration-300 w-12 h-12"
+                  className="hover:sepia hover:saturate-10000 hover:hue-rotate-90 transition-all duration-300 w-12 h-12"
                   width={100}
                   height={100}
                 />
