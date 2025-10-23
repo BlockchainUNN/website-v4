@@ -1,7 +1,7 @@
 import React from "react";
 import StrokedText from "../stroked-text";
 import { motion } from "motion/react";
-import { sponsorsData } from "@/data/communityData";
+import { partnersData, sponsorsData } from "@/data/communityData";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
@@ -136,9 +136,34 @@ export default function BuildathonSponsors() {
         />
 
         <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-          <div className="w-full border border-white h-[262px] bg-white"></div>
+          {partnersData
+            .filter((partner) => partner.type === "media")
+            .map((partner) => (
+              <div
+                key={partner.name}
+                className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+              >
+                <Link
+                  href={partner.link}
+                  target="_blank"
+                  className="absolute inset-0 bg-linear-to-t from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform -translate-y-full overflow-hidden"
+                  style={{
+                    transition: "all 0.25s cubic-bezier(.74,1,.48,.78)",
+                  }}
+                >
+                  <p className="flex items-center justify-center overflow-hidden font-semibold text-2xl text-white hover:text-blue-600 transition-colors duration-200">
+                    <ExternalLink />
+                  </p>
+                </Link>
+                <Image
+                  src={partner.imageUrl}
+                  alt={partner.name}
+                  width={700}
+                  height={700}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            ))}
         </div>
       </motion.div>
     </section>

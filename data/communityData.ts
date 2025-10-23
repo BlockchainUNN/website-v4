@@ -126,3 +126,19 @@ export const sponsorsData: Sponsor[] = [
     tier: "GOLD",
   },
 ];
+
+interface Partner {
+  name: string;
+  imageUrl: string;
+  link: string;
+  type: "community" | "media";
+}
+
+export const partnersData: Partner[] = [
+  {
+    name: "Coin Gabbar",
+    imageUrl: "/assets/events/partners/coin_gabbar.png",
+    link: "https://coingabbar.com/",
+    type: "media",
+  },
+];
