@@ -103,25 +103,52 @@ export default function BuildathonSponsors() {
         </div>
       </motion.div>
 
-      <motion.div
-        className="w-full mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <StrokedText
-          text="community partners"
-          className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
-        />
+      {partnersData.filter((partner) => partner.type === "community").length >
+        0 && (
+        <motion.div
+          className="w-full mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <StrokedText
+            text="community partners"
+            className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
+          />
 
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-          <div className="w-full border border-white h-[262px] bg-white"></div>
-        </div>
-      </motion.div>
+          <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
+            {partnersData
+              .filter((partner) => partner.type === "community")
+              .map((partner) => (
+                <div
+                  key={partner.name}
+                  className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+                >
+                  <Link
+                    href={partner.link}
+                    target="_blank"
+                    className="absolute inset-0 bg-linear-to-t from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform -translate-y-full overflow-hidden"
+                    style={{
+                      transition: "all 0.25s cubic-bezier(.74,1,.48,.78)",
+                    }}
+                  >
+                    <p className="flex items-center justify-center overflow-hidden font-semibold text-2xl text-white hover:text-blue-600 transition-colors duration-200">
+                      <ExternalLink />
+                    </p>
+                  </Link>
+                  <Image
+                    src={partner.imageUrl}
+                    alt={partner.name}
+                    width={700}
+                    height={700}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+          </div>
+        </motion.div>
+      )}
 
       <motion.div
         className="w-full mb-12"
