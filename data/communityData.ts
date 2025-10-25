@@ -131,7 +131,7 @@ interface Partner {
   name: string;
   imageUrl: string;
   link: string;
-  type: "community" | "media";
+  type: "ecosystem" | "media";
 }
 
 export const partnersData: Partner[] = [
@@ -140,5 +140,17 @@ export const partnersData: Partner[] = [
     imageUrl: "/assets/events/partners/coin_gabbar.png",
     link: "https://coingabbar.com/",
     type: "media",
+  },
+  {
+    name: "The Garage",
+    imageUrl: "/assets/events/partners/garage.svg",
+    link: "https://x.com/@thegarageng_",
+    type: "ecosystem",
+  },
+  {
+    name: "CredLend",
+    imageUrl: "/assets/events/partners/credlend.jpg",
+    link: "https://x.com/CredLend",
+    type: "ecosystem",
   },
 ];
