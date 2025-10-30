@@ -15,7 +15,7 @@ export default function BuildathonSponsors() {
           "url('/assets/events/sponsor_bg.png'), linear-gradient(0deg, #02641C, #02641C)",
       }}
     >
-      <motion.div
+      {/* <motion.div
         className="w-full mb-12"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -27,7 +27,7 @@ export default function BuildathonSponsors() {
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
         />
 
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
+        <div className="w-fit grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
           {sponsorsData
             .filter((sponsor) => sponsor.tier === "SILVER")
             .map((sponsor) => (
@@ -57,53 +57,51 @@ export default function BuildathonSponsors() {
               </div>
             ))}
         </div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
-        className="w-full mb-12"
+        className="w-full mb-12 lg:mb-20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.6, delay: 0.05 }}
       >
         <StrokedText
-          text="Gold Sponsors"
+          text="Sponsors"
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
         />
 
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
-          {sponsorsData
-            .filter((sponsor) => sponsor.tier === "GOLD")
-            .map((sponsor) => (
-              <div
-                key={sponsor.name}
-                className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+        <div className="w-fit grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
+          {sponsorsData.map((sponsor) => (
+            <div
+              key={sponsor.name}
+              className="aspect-square border-2 border-white h-[262px] bg-white relative overflow-hidden group"
+            >
+              <Link
+                href={sponsor.link}
+                target="_blank"
+                className="absolute inset-0 bg-linear-to-t from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform -translate-y-full overflow-hidden"
+                style={{
+                  transition: "all 0.25s cubic-bezier(.74,1,.48,.78)",
+                }}
               >
-                <Link
-                  href={sponsor.link}
-                  target="_blank"
-                  className="absolute inset-0 bg-linear-to-t from-transparent to-black/70 backdrop-blur-xs flex items-center justify-center group-hover:translate-y-0 transform -translate-y-full overflow-hidden"
-                  style={{
-                    transition: "all 0.25s cubic-bezier(.74,1,.48,.78)",
-                  }}
-                >
-                  <p className="flex items-center justify-center overflow-hidden font-semibold text-2xl text-white hover:text-blue-600 transition-colors duration-200">
-                    <ExternalLink />
-                  </p>
-                </Link>
-                <Image
-                  src={sponsor.imageUrl}
-                  alt={sponsor.name}
-                  width={700}
-                  height={700}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            ))}
+                <p className="flex items-center justify-center overflow-hidden font-semibold text-2xl text-white hover:text-blue-600 transition-colors duration-200">
+                  <ExternalLink />
+                </p>
+              </Link>
+              <Image
+                src={sponsor.imageUrl}
+                alt={sponsor.name}
+                width={700}
+                height={700}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ))}
         </div>
       </motion.div>
 
-      {partnersData.filter((partner) => partner.type === "community").length >
+      {partnersData.filter((partner) => partner.type === "ecosystem").length >
         0 && (
         <motion.div
           className="w-full mb-12"
@@ -113,13 +111,13 @@ export default function BuildathonSponsors() {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <StrokedText
-            text="community partners"
+            text="ecosystem partners"
             className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
           />
 
-          <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
+          <div className="w-fit grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
             {partnersData
-              .filter((partner) => partner.type === "community")
+              .filter((partner) => partner.type === "ecosystem")
               .map((partner) => (
                 <div
                   key={partner.name}
@@ -162,7 +160,7 @@ export default function BuildathonSponsors() {
           className="lg:text-6xl mb-6 text-4xl uppercase text-white font-extrabold"
         />
 
-        <div className="w-full grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
+        <div className="w-fit grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(280px,1fr))] max-w-7xl gap-4">
           {partnersData
             .filter((partner) => partner.type === "media")
             .map((partner) => (
