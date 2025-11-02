@@ -270,8 +270,9 @@ export default function HackerProjects() {
                   onClick={() => setStep(1)}
                 />
                 <StackGridButton
-                  text="Submit"
+                  text={submitProject.isPending ? "Submitting..." : "Submit"}
                   variant="navigation"
+                  disabled={submitProject.isPending}
                   bgColor="linear-gradient(180deg, #02641C 0%, #02641C 100%)"
                   borderColor="#024539"
                   size="large"
