@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Image from "next/image";
 import StackGridButton from "@/components/event/stack-grid-button";
@@ -5,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSubmitProject } from "@/hooks/crud/useSubmitProject";
+import { toast } from "react-toastify";
 
 // Combined schema for both steps
 const projectSchema = z.object({
@@ -35,10 +38,8 @@ export default function HackerProjects() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    // setValue,
-    // getValues,
     reset,
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -51,15 +52,22 @@ export default function HackerProjects() {
       documentationLink: "",
       uploadImages: undefined,
     },
-    mode: "onBlur",
   });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const submitProject = useSubmitProject();
+
   const handleFinalSubmit = (data: any) => {
-    console.log("Submitted project:", data);
-    reset();
-    setStep(1);
-    
+    submitProject.mutate(data, {
+      onSuccess: () => {
+        toast.success("Project submitted successfully!");
+        reset();
+        setStep(1);
+      },
+      onError: (err) => {
+        toast.error("Failed to submit project");
+        console.error(err);
+      },
+    });
   };
 
   // Render step 1 fields
@@ -228,13 +236,16 @@ export default function HackerProjects() {
       </section>
       <section className="w-full flex justify-center">
         <div className="w-10/12 bg-white shadow-lg p-8 border-3 border-black text-black">
-            <form
-              onSubmit={handleSubmit(handleFinalSubmit)}
-              className="space-y-10"
-              autoComplete="off"
-            >
-              <div className="space-y-4">{step === 1 ? Step1Fields : Step2Fields}</div>
-              {step === 1  ?  <div className="flex justify-center mt-auto">
+          <form
+            onSubmit={handleSubmit(handleFinalSubmit)}
+            className="space-y-10"
+            autoComplete="off"
+          >
+            <div className="space-y-4">
+              {step === 1 ? Step1Fields : Step2Fields}
+            </div>
+            {step === 1 ? (
+              <div className="flex justify-center mt-auto">
                 <StackGridButton
                   text="Next"
                   variant="navigation"
@@ -243,11 +254,10 @@ export default function HackerProjects() {
                   size="large"
                   shadowOffset={{ x: -3, y: 4 }}
                   hasArrow
-                 onClick={() => setStep(2)}
-                 
+                  onClick={() => setStep(2)}
                 />
               </div>
-              : (
+            ) : (
               <div className="flex justify-center flex-col lg:flex-row gap-4 mt-auto">
                 <StackGridButton
                   text="Back"
@@ -269,12 +279,8 @@ export default function HackerProjects() {
                   hasArrow
                 />
               </div>
-          
-          )}
-             
-            </form>
-         
-         
+            )}
+          </form>
         </div>
       </section>
     </div>
