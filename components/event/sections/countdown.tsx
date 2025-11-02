@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export default function BuildathonCountdown() {
   // Set target date (you can customize this)
-  const targetDate = new Date("2025-11-04T23:59:59").getTime();
+  const targetDate = new Date("2025-11-08T23:59:59").getTime();
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
