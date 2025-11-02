@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSubmitProject } from "@/hooks/crud/useSubmitProject";
-import { toast } from "react-toastify";
 
 // Combined schema for both steps
 const projectSchema = z.object({
@@ -57,17 +56,7 @@ export default function HackerProjects() {
   const submitProject = useSubmitProject();
 
   const handleFinalSubmit = (data: any) => {
-    submitProject.mutate(data, {
-      onSuccess: () => {
-        toast.success("Project submitted successfully!");
-        reset();
-        setStep(1);
-      },
-      onError: (err) => {
-        toast.error("Failed to submit project");
-        console.error(err);
-      },
-    });
+    submitProject.mutate(data);
   };
 
   // Render step 1 fields
