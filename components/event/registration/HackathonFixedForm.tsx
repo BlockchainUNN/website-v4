@@ -11,7 +11,15 @@ import { HackathonRegistrationForm } from "@/types/hacker.types";
 import StackGridButton from "../stack-grid-button";
 import Link from "next/link";
 
-const formSchema = z
+const passwordSchema = z
+  .string()
+  .min(8, "Password must be at least 8 characters long")
+  .regex(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+    "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+  );
+
+export const formSchema = z
   .object({
     email: z.string().email("Enter a valid email"),
     role: z.enum(
@@ -27,10 +35,8 @@ const formSchema = z
         message: "Select your role",
       }
     ),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z
-      .string()
-      .min(8, "Confirm password must be at least 8 characters"),
+    password: passwordSchema,
+    confirmPassword: passwordSchema,
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
